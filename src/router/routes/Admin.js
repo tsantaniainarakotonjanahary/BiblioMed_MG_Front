@@ -1,10 +1,10 @@
 import { lazy } from 'react'
 
-const Entities = lazy(() => import('../../views/admin/entities'))
-const Files = lazy(() => import('../../views/admin/files'))
-const Upload = lazy(() => import('../../views/admin/upload'))
-const Valid = lazy(() => import('../../views/admin/valid'))
-const Users = lazy(() => import('../../views/admin/users')) 
+const Entities = lazy(() => import('../../views/pages/admin/entities'))
+const Files = lazy(() => import('../../views/pages/admin/files'))
+const Upload = lazy(() => import('../../views/pages/admin/upload'))
+const Valid = lazy(() => import('../../views/pages/admin/valid'))
+const Users = lazy(() => import('../../views/pages/admin/users')) 
 
 const AdminRoutes = [
   {

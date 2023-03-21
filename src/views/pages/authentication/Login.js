@@ -84,34 +84,68 @@ const Login = () => {
 
   const source = skin === 'dark' ? illustrationsDark : illustrationsLight
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     if (Object.values(data).every(field => field.length > 0)) {
-      useJwt
-        .login({ email: data.loginEmail, password: data.password })
-        .then(res => {
-          const data = { ...res.data.userData, accessToken: res.data.accessToken, refreshToken: res.data.refreshToken }
-          dispatch(handleLogin(data))
-          ability.update(res.data.userData.ability)
-          navigate(getHomeRouteForLoggedInUser(data.role))
-          toast(t => (
-            <ToastContent t={t} role={data.role || 'admin'} name={data.fullName || data.username || 'John Doe'} />
-          ))
+
+    try {
+      const response = await fetch('http://localhost:4000/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: data.loginEmail,
+          password: data.password
         })
-        .catch(err => setError('loginEmail', {
+      });
+      const result = await response.json();
+      if (response.ok) {
+        localStorage.setItem('userData', JSON.stringify(result.user));
+        localStorage.setItem('token', result.token);
+        ability.update(result.user.ability)
+        navigate(getHomeRouteForLoggedInUser(result.user.role));
+        navigate(0);
+        toast(t => (
+          <ToastContent t={t} role={result.user.role } name={result.user.nom + " " + result.user.prenom} />
+        ))
+      } else {
+        if (result.message === 'Utilisateur non trouvé') {
+          setError('loginEmail', {
             type: 'manual',
-            message: err.response.data.error
-          })
-        )
-    } else {
-      for (const key in data) {
-        if (data[key].length === 0) {
-          setError(key, {
-            type: 'manual'
-          })
+            message: 'Email invalide'
+          });
+        } else if (result.message === 'Utilisateur non validé') {
+          setError('password', {
+            type: 'manual',
+            message: 'Vous devez être validé par l\'administrateur pour vous connecter.'
+          });
+        } else if (result.message === 'Mot de passe incorrect') {
+          setError('password', {
+            type: 'manual',
+            message: 'Mot de passe incorrect'
+          });
         }
+      }
+    } catch (error) {
+      console.error(error);
+      // Display a generic error message
+      setError('password', {
+        type: 'manual',
+        message: 'Une erreur est survenue lors de la connexion. Veuillez réessayer plus tard.'
+      });
+    }
+
+
+  } else {
+    for (const key in data) {
+      if (data[key].length === 0) {
+        setError(key, {
+          type: 'manual'
+        });
       }
     }
   }
+}
 
   return (
     <div className='auth-wrapper auth-cover'>

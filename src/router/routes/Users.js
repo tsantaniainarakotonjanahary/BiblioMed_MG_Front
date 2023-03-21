@@ -1,9 +1,9 @@
 import { lazy } from 'react'
 
-const Upload = lazy(() => import('../../views/users/upload'))
-const Pending = lazy(() => import('../../views/users/pending'))
-const ByEntity = lazy(() => import('../../views/users/by-entity'))
-const Valid = lazy(() => import('../../views/users/valid'))
+const Upload = lazy(() => import('../../views/pages/users/upload'))
+const Pending = lazy(() => import('../../views/pages/users/pending'))
+const ByEntity = lazy(() => import('../../views/pages/users/by-entity'))
+const Valid = lazy(() => import('../../views/pages/users/valid'))
 
 const UsersRoutes = [
   {
