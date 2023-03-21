@@ -13,7 +13,7 @@ import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
 
-const PageOne = () => {
+const ByEntity = () => {
 
 
   return (
@@ -28,4 +28,4 @@ const PageOne = () => {
   )
 }
 
-export default PageOne;
+export default ByEntity;

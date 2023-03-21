@@ -13,14 +13,14 @@ import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
 
-const Valid = () => {
+const Pending = () => {
 
 
   return (
     <Row>
       <Col md='6' sm='12'>
         <Card title={"go"} >
-          <h1>Valide</h1>
+          <h1>Non Valide</h1>
         </Card>
       </Col>
      
@@ -28,4 +28,4 @@ const Valid = () => {
   )
 }
 
-export default Valid;
+export default Pending;
