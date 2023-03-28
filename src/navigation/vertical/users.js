@@ -1,6 +1,6 @@
 // ** Icons Import
 import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield } from 'react-feather'
-var ability = JSON.parse(localStorage.getItem("userData"))?.ability || [{ action: "lol" }];
+
 
 
 export default [

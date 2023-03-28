@@ -98,58 +98,7 @@ const NotificationDropdown = () => {
           wheelPropagation: false
         }}
       >
-        {notificationsArray.map((item, index) => {
-          return (
-            <a
-              key={index}
-              className='d-flex'
-              href={item.switch ? '#' : '/'}
-              onClick={e => {
-                if (!item.switch) {
-                  e.preventDefault()
-                }
-              }}
-            >
-              <div
-                className={classnames('list-item d-flex', {
-                  'align-items-start': !item.switch,
-                  'align-items-center': item.switch
-                })}
-              >
-                {!item.switch ? (
-                  <Fragment>
-                    <div className='me-1'>
-                      <Avatar
-                        {...(item.img
-                          ? { img: item.img, imgHeight: 32, imgWidth: 32 }
-                          : item.avatarContent
-                          ? {
-                              content: item.avatarContent,
-                              color: item.color
-                            }
-                          : item.avatarIcon
-                          ? {
-                              icon: item.avatarIcon,
-                              color: item.color
-                            }
-                          : null)}
-                      />
-                    </div>
-                    <div className='list-item-body flex-grow-1'>
-                      {item.title}
-                      <small className='notification-text'>{item.subtitle}</small>
-                    </div>
-                  </Fragment>
-                ) : (
-                  <Fragment>
-                    {item.title}
-                    {item.switch}
-                  </Fragment>
-                )}
-              </div>
-            </a>
-          )
-        })}
+        
       </PerfectScrollbar>
     )
   }

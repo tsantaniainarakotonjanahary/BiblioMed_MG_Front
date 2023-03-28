@@ -10,5 +10,18 @@ import uiElements from './ui-elements'
 import users from './users'
 import admin from './admin'
 
+var ability = JSON.parse(localStorage.getItem("userData"))?.ability || [{ action: "lol" }];
+
 // ** Merge & Export
-export default [...dashboards, ...apps, ...pages, ...uiElements, ...forms, ...tables, ...charts, ...others , ...users , ...admin]
+export default [
+    ...dashboards, 
+    ...apps, 
+    ...pages, 
+    ...uiElements, 
+    ...forms, 
+    ...tables, 
+    ...charts, 
+    ...others , 
+    ...users ,
+    ...admin
+]
