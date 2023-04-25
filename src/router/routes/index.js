@@ -33,7 +33,7 @@ const getLayout = {
 }
 
 // ** Document title
-const TemplateTitle = 'Vuexy_MG'
+const TemplateTitle = 'Biblimed_MG'
 
 // ** Default Route
 const DefaultRoute = '/dashboard/ecommerce'
