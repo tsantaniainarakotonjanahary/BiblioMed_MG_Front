@@ -70,8 +70,8 @@ const Pending = () => {
   return (
     <Row>
     <Col md='12' sm='12'>
-      <Card title={"Fichiers a valider"} >
-        <h1> à valider</h1>
+      <Card title={" Fichiers en attente de validation par l'administrateur "} >
+        <h1></h1>
         <Table>
           <thead>
             <tr>

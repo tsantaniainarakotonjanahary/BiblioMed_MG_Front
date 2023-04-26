@@ -17,7 +17,7 @@ const Valid = () => {
 
   return (
     <Row>
-      <Col md='6' sm='12'>
+      <Col md='12' sm='12'>
         <Card title = { "Listes des denandes de creation de compte " } >
           <Table>
             <thead>
@@ -44,7 +44,7 @@ const Valid = () => {
                   <td>{item.numero}</td>
                   <td>{item.adresse}</td>
                   <td>
-                   <Button  onClick={()=> {( 
+                   <Button  onClick={() => {( 
                     async () => { fetch(`${BASE_URL}/user/validate/${item._id}`, {
                         method: 'PUT',
                         headers: { 'Content-Type': 'application/json', 'x-auth-token' : localStorage.getItem("token") }
@@ -56,9 +56,7 @@ const Valid = () => {
                 
                   </td>
                   <td>
-                   < Button onClick={()=> {
-                    setAction(!action);
-                   }} > Refuser </Button>
+                   < Button onClick={() => { setAction(!action); }} > Refuser </Button>
                   </td>
                 </tr>
               ))}
