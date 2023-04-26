@@ -24,7 +24,6 @@ const ByEntity = () => {
 
   useEffect(() => {
     const getNotValidatedFile = async () => {
-      console.log(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`);
         fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`, {
             method: "GET",
             headers: {

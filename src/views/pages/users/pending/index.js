@@ -1,14 +1,10 @@
-// ** React Importsnippet
 import { Fragment, useEffect , useState  } from 'react'
 
-// ** Reactstrap Imports
 import { Row, Col, CardBody, CardText , CardTitle , Table } from 'reactstrap'
 
-// ** Third Party Components
 import prism from 'prismjs'
 
 
-// ** Custom Components
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 

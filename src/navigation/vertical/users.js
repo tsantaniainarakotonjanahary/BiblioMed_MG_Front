@@ -1,7 +1,4 @@
-// ** Icons Import
 import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield } from 'react-feather'
-
-
 
 export default [
   {
@@ -9,7 +6,7 @@ export default [
   },
   {
     id: 'user-upload',
-    title: 'Upload File',
+    title: 'Ajouter fichier',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-user',
@@ -17,7 +14,7 @@ export default [
   },
   {
     id: 'pending-file',
-    title: 'Pending files',
+    title: 'En attente',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-user',
@@ -25,7 +22,7 @@ export default [
   },
   {
     id: 'file-by-entity',
-    title: 'Shared for my entity',
+    title: 'Partagé',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-user',
@@ -33,7 +30,7 @@ export default [
   },
   {
     id: 'user-valid',
-    title: 'Validated files',
+    title: 'Fichier validé',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-user',

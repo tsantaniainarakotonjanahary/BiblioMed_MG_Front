@@ -1,20 +1,15 @@
-// ** React Imports
 import { Link } from 'react-router-dom'
 import { useSkin } from '@hooks/useSkin'
 
-// ** Reactstrap Imports
 import { Row, Col, CardTitle, CardText, Button } from 'reactstrap'
 
-// ** Illustrations Imports
 import illustrationsLight from '@src/assets/images/pages/verify-email-illustration.svg'
 import illustrationsDark from '@src/assets/images/pages/verify-email-illustration-dark.svg'
 
-// ** Styles
 import '@styles/base/pages/authentication.scss'
 
 const VerifyEmailCover = () => {
-  // ** Hooks
-  const { skin } = useSkin()
+  const { skin } = useSkin();
 
   const source = skin === 'dark' ? illustrationsDark : illustrationsLight
 
