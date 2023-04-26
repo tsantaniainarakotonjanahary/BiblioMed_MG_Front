@@ -8,13 +8,15 @@ import prism from 'prismjs'
 
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
-
+import HashLoader from 'react-spinners/HashLoader'
 
 const ByEntity = () => {
 
   const [notValidateFile,setNotValidateFile] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const getNotValidatedFile = async () => {
         fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`, {
             method: "GET",
@@ -22,7 +24,7 @@ const ByEntity = () => {
               "Content-Type": "application/json",
               "x-auth-token" : localStorage.getItem("token"),
             }
-      }).then((response) => response.json()).then((data) => { setNotValidateFile(data); }).catch((error) => { console.error(error); })
+      }).then((response) => response.json()).then((data) => { setNotValidateFile(data); setIsLoading(false);}).catch((error) => { console.error(error); })
     }
     getNotValidatedFile();
 
@@ -49,19 +51,24 @@ const ByEntity = () => {
             </tr>
           </thead>
           <tbody>
-            {notValidateFile.map((item,index) => (
-              <tr key={index}>
-                <td>{item.dossier}</td>
-                <td>{item.fichier.titre}</td>
-                <td>{item.fichier.description}</td>
-                <td>{item.fichier.nom}</td>
-                <td>{item.fichier.date}</td>
-                <td>{item.fichier.user.nom}</td>
-                <td>
-                    <a href={item.fichier.lien} download> <Eye size={20} /> </a>
-                  </td>
-              </tr>
-            ))}
+          {isLoading ? (
+                <div className="spinner">
+                  <HashLoader color="#123abc" loading={isLoading} size={50} />
+                </div>
+              ) : (notValidateFile.map((item,index) => (
+                <tr key={index}>
+                  <td>{item.dossier}</td>
+                  <td>{item.fichier.titre}</td>
+                  <td>{item.fichier.description}</td>
+                  <td>{item.fichier.nom}</td>
+                  <td>{item.fichier.date}</td>
+                  <td>{item.fichier.user.nom}</td>
+                  <td>
+                      <a href={item.fichier.lien} download> <Eye size={20} /> </a>
+                    </td>
+                </tr>
+              )))}
+            
           </tbody>
         </Table>
       </Card>

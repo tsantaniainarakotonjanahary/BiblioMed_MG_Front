@@ -8,5 +8,6 @@ export default [
   { id: 'file-by-entity', title: 'Partagé', icon: <Share2 size={20} />, action: 'manage', resource: 'for-user', navLink: '/user/file-by-entity' },
   { id: 'user-valid', title: 'Fichier validé', icon: <Check size={20} />, action: 'manage', resource: 'for-user', navLink: '/user/valid' },
   { id: 'user-public', title: 'Fichier public', icon: <Globe size={20} />, action: 'manage', resource: 'for-user', navLink: '/user/public' },
+  { id: 'user-repertoire', title: 'Repertoire et categorie', icon: <Globe size={20} />, action: 'manage', resource: 'for-user', navLink: '/user/repertoire' },
   
 ]

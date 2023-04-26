@@ -1,24 +1,18 @@
 import { Fragment, useEffect , useState  } from 'react'
-
 import { Row, Col, CardBody, CardText , CardTitle , Table } from 'reactstrap'
-
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield , Home , Plus  , Loader , Share2 , BookOpen , Globe , Check , Eye } from 'react-feather'
 import prism from 'prismjs'
-
-
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
-
+import HashLoader from 'react-spinners/HashLoader'
 
 const Pending = () => {
 
   const [notValidateFile,setNotValidateFile] = useState([]);
-/*  const [validateFile,setValidateFile] = useState([]);
-  const [visibleEntiteNonValidate,setVisibleEntiteNonValidate] = useState([]);
-  const [visibleEntiteValidate,setVisibleEntiteValidate] = useState([]); */
-  
-
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const getNotValidatedFile = async () => {
         fetch(`https://bibliotheque-medical-back.vercel.app/file/non-valides-par-user`, {
             method: "GET",
@@ -26,43 +20,9 @@ const Pending = () => {
               "Content-Type": "application/json",
               "x-auth-token" : localStorage.getItem("token"),
             }
-      }).then((response) => response.json()).then((data) => { setNotValidateFile(data); }).catch((error) => { console.error(error); })
+      }).then((response) => response.json()).then((data) => { setNotValidateFile(data);  setIsLoading(false);}).catch((error) => { console.error(error); })
     }
     getNotValidatedFile();
-
-   /* const getValidatedFile = async () => {
-      fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-user`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token" : localStorage.getItem("token"),
-          }
-      }).then((response) => response.json()).then((data) => { setValidateFile(data); }).catch((error) => { console.error(error); })
-    }
-    getValidatedFile();
-
-    const getVisibleEntiteNonValidate = async () => {
-      fetch("https://bibliotheque-medical-back.vercel.app/file/non-valides-par-visibilite/"+ JSON.parse(localStorage.getItem("userData")).idEntite, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token" : localStorage.getItem("token"),
-          }
-      }).then((response) => response.json()).then((data) => { setVisibleEntiteNonValidate(data); }).catch((error) => { console.error(error); })
-    }
-    getVisibleEntiteNonValidate();
-
-    const getVisibleEntiteValidate = async () => {
-      fetch("https://bibliotheque-medical-back.vercel.app/file/valides-par-visibilite/"+ JSON.parse(localStorage.getItem("userData")).idEntite, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token" : localStorage.getItem("token"),
-          }
-      }).then((response) => response.json()).then((data) => { setVisibleEntiteValidate(data); }).catch((error) => { console.error(error); })
-    }
-    getVisibleEntiteValidate();
-    */
 
 },[])
 
@@ -84,16 +44,20 @@ const Pending = () => {
             </tr>
           </thead>
           <tbody>
-            {notValidateFile.map((item,index) => (
-              <tr key={index}>
-                <td>{item.dossier}</td>
-                <td>{item.fichier.titre}</td>
-                <td>{item.fichier.description}</td>
-                <td>{item.fichier.nom}</td>
-                <td>{item.fichier.date}</td>
-                <td>{item.fichier.user.nom}</td>
-              </tr>
-            ))}
+          {isLoading ? (
+                <div className="spinner">
+                  <HashLoader color="#123abc" loading={isLoading} size={50} />
+                </div>
+              ) : (notValidateFile.map((item,index) => (
+                <tr key={index}>
+                  <td>{item.dossier}</td>
+                  <td>{item.fichier.titre}</td>
+                  <td>{item.fichier.description}</td>
+                  <td>{item.fichier.nom}</td>
+                  <td>{item.fichier.date}</td>
+                  <td>{item.fichier.user.nom}</td>
+                </tr>
+            )))}
           </tbody>
         </Table>
       </Card>
