@@ -1,14 +1,12 @@
 import { Fragment, useEffect, useState } from 'react'
 
 import { Row, Col, CardBody, CardText , CardTitle , Table , Button } from 'reactstrap'
-import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield , Home , Plus  , Loader , Share2 , BookOpen , Globe , Check , Eye} from 'react-feather'
+import { Menu, Circle, EyeOff, Folder, LifeBuoy, Shield , Home , Plus  , Loader , Share2 , BookOpen , Globe , Check , Eye } from 'react-feather'
 
 import prism from 'prismjs'
 
-
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
-
 
 const Valid = () => {
 
@@ -54,7 +52,7 @@ const Valid = () => {
                   <td>{item.fichier.date}</td>
                   <td>{item.fichier.user.nom}</td>
                   <td>
-                      <a href={item.fichier.lien} download> <Eye size={20} /> </a>
+                      <a href={item.fichier.lien} download><Eye size={20} /></a>
                   </td>
                 </tr>
               ))}
@@ -62,7 +60,6 @@ const Valid = () => {
           </Table>
         </Card>
       </Col>
-     
     </Row>
   )
 }
