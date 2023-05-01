@@ -41,8 +41,19 @@ const Valid = () => {
         <Card title={"Fichié validé par l'administrateur apres ajout "} >
         
 
-          <Table>
-            <thead>
+         
+            
+            
+              {isLoading ? (
+                
+                  <HashLoader
+
+
+ color="#123abc" loading={isLoading} size={50} />
+                
+              ) : (
+                <Table>
+                <thead>
               <tr>
                 <th>Repertoire et categorie </th>
                 <th>Titre</th>
@@ -53,15 +64,8 @@ const Valid = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              {isLoading ? (
-                <div className="spinner">
-                  <HashLoader
-
-
- color="#123abc" loading={isLoading} size={50} />
-                </div>
-              ) : (validateFile.map((item,index) => (
+              <tbody>
+                {validateFile.map((item,index) => (
                 <tr key={index}>
                   <td>{item.dossier}</td>
                   <td>{item.fichier.titre}</td>
@@ -73,10 +77,12 @@ const Valid = () => {
                       <a href={item.fichier.lien} download><Eye size={20} /></a>
                   </td>
                 </tr>
-              )))}
+              ))} 
+            </tbody> 
+            </Table>) }
 
-            </tbody>
-          </Table>
+            
+         
         </Card>
       </Col>
     </Row>

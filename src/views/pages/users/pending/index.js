@@ -11,6 +11,8 @@ const Pending = () => {
   const [notValidateFile,setNotValidateFile] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log( localStorage.getItem("token"));
+
   useEffect(() => {
     setIsLoading(true);
     const getNotValidatedFile = async () => {
@@ -45,9 +47,9 @@ const Pending = () => {
           </thead>
           <tbody>
           {isLoading ? (
-                <div className="spinner">
+                
                   <HashLoader color="#123abc" loading={isLoading} size={50} />
-                </div>
+               
               ) : (notValidateFile.map((item,index) => (
                 <tr key={index}>
                   <td>{item.dossier}</td>
