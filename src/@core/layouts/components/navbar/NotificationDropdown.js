@@ -19,6 +19,7 @@ import avatar15 from '@src/assets/images/portrait/small/avatar-s-15.jpg'
 const NotificationDropdown = () => {
   // ** Notification Array
   const notificationsArray = [
+    /*
     {
       img: avatar3,
       subtitle: 'Won the monthly best seller badge.',
@@ -84,24 +85,31 @@ const NotificationDropdown = () => {
           <span className='fw-bolder'>High memory</span>&nbsp;usage
         </p>
       )
-    }
+    }*/
   ]
 
-  // ** Function to render Notifications
-  /*eslint-disable */
   const renderNotificationItems = () => {
     return (
       <PerfectScrollbar
-        component='li'
+        component='ul'
         className='media-list scrollable-container'
         options={{
           wheelPropagation: false
         }}
-      >
-        
-      </PerfectScrollbar>
-    )
+      > 
+        {notificationsArray.map((notification, index) => (
+          <li key={index}>
+            <img src={notification.img} alt="" />
+            <div className="media-body">
+              <span className="media-heading">{notification.title}</span>
+              <span>{notification.subtitle}</span>
+            </div>
+          </li>
+        ))}
+      </PerfectScrollbar> 
+    ) 
   }
+  
   /*eslint-enable */
 
   return (

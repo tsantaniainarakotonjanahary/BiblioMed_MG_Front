@@ -1,5 +1,6 @@
-// ** React Imports
 import { lazy } from 'react'
+
+const Landing = lazy(() => import('../../views/pages/public/Landing'))
 
 const Login = lazy(() => import('../../views/pages/authentication/Login'))
 const LoginBasic = lazy(() => import('../../views/pages/authentication/LoginBasic'))
@@ -24,6 +25,15 @@ const TwoStepsBasic = lazy(() => import('../../views/pages/authentication/TwoSte
 const TwoStepsCover = lazy(() => import('../../views/pages/authentication/TwoStepsCover'))
 
 const AuthenticationRoutes = [
+  {
+    path: '/welcome',
+    element: <Landing />,
+    meta: {
+      layout: 'blank',
+      publicRoute: true,
+      restricted: true
+    }
+  },
   {
     path: '/login',
     element: <Login />,
