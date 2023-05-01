@@ -1,13 +1,10 @@
-// ** React Imports
 import { Fragment, useEffect } from 'react'
 
-// ** Reactstrap Imports
 import { Row, Col, CardBody, CardText } from 'reactstrap'
 
-// ** Third Party Components
+
 import prism from 'prismjs'
 
-// ** Demo Components
 import TableDark from './TableDark'
 import TableBasic from './TableBasic'
 import TableHover from './TableHover'
@@ -21,13 +18,10 @@ import TableBorderless from './TableBorderless'
 import TableTheadLight from './TableTheadLight'
 import TableStripedDark from './TableStripedDark'
 
-// ** Custom Components
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
-// ** Source Code
-import {
-  tableDark,
+import { tableDark,
   tableBasic,
   tableHover,
   tableSmall,
