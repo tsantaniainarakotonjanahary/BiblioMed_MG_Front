@@ -1,0 +1,1 @@
+import{j as r,a4 as i,a5 as a}from"./index.e711043e.js";import{C as o}from"./index.97dfbaed.js";import"./index.51d05e01.js";import"./App.c3ad3f0b.js";const m=()=>r(i,{children:r(a,{md:"6",sm:"12",children:r(o,{title:"go",children:r("h1",{children:"Valide"})})})});export{m as default};
