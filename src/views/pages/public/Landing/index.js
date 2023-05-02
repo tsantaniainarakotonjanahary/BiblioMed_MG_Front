@@ -9,6 +9,25 @@ import prism from 'prismjs'
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
+import heroImg from "@src/assets/img/hero-img.png";
+import about from "@src/assets/img/about.jpg";
+import features from "@src/assets/img/features.svg";
+import testimonials1 from "@src/assets/img/testimonials/testimonials-1.jpg"
+import testimonials2 from "@src/assets/img/testimonials/testimonials-2.jpg"
+import testimonials3 from "@src/assets/img/testimonials/testimonials-3.jpg"
+import testimonials4 from "@src/assets/img/testimonials/testimonials-4.jpg"
+import testimonials5 from "@src/assets/img/testimonials/testimonials-5.jpg"
+
+import portfolio1 from "@src/assets/img/portfolio/portfolio-1.jpg";
+import portfolio2 from "@src/assets/img/portfolio/portfolio-2.jpg";
+import portfolio3 from "@src/assets/img/portfolio/portfolio-3.jpg";
+import portfolio4 from "@src/assets/img/portfolio/portfolio-4.jpg";
+import portfolio5 from "@src/assets/img/portfolio/portfolio-5.jpg";
+import portfolio6 from "@src/assets/img/portfolio/portfolio-6.jpg";
+import portfolio7 from "@src/assets/img/portfolio/portfolio-7.jpg";
+import portfolio8 from "@src/assets/img/portfolio/portfolio-8.jpg";
+import portfolio9 from "@src/assets/img/portfolio/portfolio-9.jpg";
+
 const Landing = () => {
 
   const [validateFile,setValidateFile] = useState([]);
@@ -40,8 +59,8 @@ const Landing = () => {
       <h1 className="logo">
         <a href="index.html">Techie</a>
       </h1>
-      {/* Uncomment below if you prefer to use an image logo */}
-      {/* <a href="index.html" class="logo"><img src="/src/assets/img/logo.png" alt="" class="img-fluid"></a>*/}
+      
+     
       <nav id="navbar" className="navbar">
         <ul>
           <li>
@@ -149,7 +168,7 @@ const Landing = () => {
           data-aos-delay={150}
         >
           <img
-            src="/src/assets/img/hero-img.png"
+            src={heroImg}
             className="img-fluid animated"
             alt=""
           />
@@ -168,7 +187,7 @@ const Landing = () => {
             data-aos="zoom-in"
             data-aos-delay={150}
           >
-            <img src="/src/assets/img/about.jpg" className="img-fluid" alt="" />
+            <img src={about} className="img-fluid" alt="" />
           </div>
           <div
             className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
@@ -518,7 +537,7 @@ const Landing = () => {
             data-aos="zoom-in"
             data-aos-delay={100}
           >
-            <img src="/src/assets/img/features.svg" alt="" className="img-fluid" />
+            <img src={features} alt="" className="img-fluid" />
           </div>
         </div>
       </div>
@@ -553,7 +572,7 @@ const Landing = () => {
                   <i className="bx bxs-quote-alt-right quote-icon-right" />
                 </p>
                 <img
-                  src="/src/assets/img/testimonials/testimonials-1.jpg"
+                  src={testimonials1}
                   className="testimonial-img"
                   alt=""
                 />
@@ -573,7 +592,7 @@ const Landing = () => {
                   <i className="bx bxs-quote-alt-right quote-icon-right" />
                 </p>
                 <img
-                  src="/src/assets/img/testimonials/testimonials-2.jpg"
+                  src={testimonials2}
                   className="testimonial-img"
                   alt=""
                 />
@@ -592,7 +611,7 @@ const Landing = () => {
                   <i className="bx bxs-quote-alt-right quote-icon-right" />
                 </p>
                 <img
-                  src="/src/assets/img/testimonials/testimonials-3.jpg"
+                  src={testimonials3}
                   className="testimonial-img"
                   alt=""
                 />
@@ -611,7 +630,7 @@ const Landing = () => {
                   <i className="bx bxs-quote-alt-right quote-icon-right" />
                 </p>
                 <img
-                  src="/src/assets/img/testimonials/testimonials-4.jpg"
+                  src={testimonials4}
                   className="testimonial-img"
                   alt=""
                 />
@@ -630,7 +649,7 @@ const Landing = () => {
                   <i className="bx bxs-quote-alt-right quote-icon-right" />
                 </p>
                 <img
-                  src="/src/assets/img/testimonials/testimonials-5.jpg"
+                  src={testimonials5}
                   className="testimonial-img"
                   alt=""
                 />
@@ -673,7 +692,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-app">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-1.jpg"
+                src={portfolio1}
                 className="img-fluid"
                 alt=""
               />
@@ -683,7 +702,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-1.jpg"
+                  href={portfolio1}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="App 1"
@@ -699,7 +718,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-web">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-2.jpg"
+                src={portfolio2}
                 className="img-fluid"
                 alt=""
               />
@@ -709,7 +728,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-2.jpg"
+                  href={portfolio2}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="Web 3"
@@ -725,7 +744,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-app">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-3.jpg"
+                src={portfolio3}
                 className="img-fluid"
                 alt=""
               />
@@ -735,7 +754,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-3.jpg"
+                  href={portfolio3}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="App 2"
@@ -751,7 +770,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-card">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-4.jpg"
+                src={portfolio4}
                 className="img-fluid"
                 alt=""
               />
@@ -761,7 +780,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-4.jpg"
+                  href={portfolio4}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="Card 2"
@@ -777,7 +796,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-web">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-5.jpg"
+                src={portfolio5}
                 className="img-fluid"
                 alt=""
               />
@@ -787,7 +806,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-5.jpg"
+                  href={portfolio5}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="Web 2"
@@ -803,7 +822,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-app">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-6.jpg"
+                src={portfolio6}
                 className="img-fluid"
                 alt=""
               />
@@ -813,7 +832,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-6.jpg"
+                  href={portfolio6}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="App 3"
@@ -829,7 +848,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-card">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-7.jpg"
+                src={portfolio7}
                 className="img-fluid"
                 alt=""
               />
@@ -839,7 +858,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-7.jpg"
+                  href={portfolio7}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="Card 1"
@@ -855,7 +874,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-card">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-8.jpg"
+                src={portfolio8}
                 className="img-fluid"
                 alt=""
               />
@@ -865,7 +884,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-8.jpg"
+                  href={portfolio8}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="Card 3"
@@ -881,7 +900,7 @@ const Landing = () => {
           <div className="col-lg-4 col-md-6 portfolio-item filter-web">
             <div className="portfolio-wrap">
               <img
-                src="/src/assets/img/portfolio/portfolio-9.jpg"
+                src={portfolio9}
                 className="img-fluid"
                 alt=""
               />
@@ -891,7 +910,7 @@ const Landing = () => {
               </div>
               <div className="portfolio-links">
                 <a
-                  href="/src/assets/img/portfolio/portfolio-9.jpg"
+                  href={portfolio9}
                   data-gallery="portfolioGallery"
                   className="portfolio-lightbox"
                   title="Web 3"
