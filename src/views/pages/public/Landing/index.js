@@ -9,8 +9,32 @@ import prism from 'prismjs'
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
+import '@src/assets/vendor/aos/aos.css';
+import '@src/assets/vendor/bootstrap-icons/bootstrap-icons.css';
+import '@src/assets/vendor/bootstrap/css/bootstrap.min.css';
+import '@src/assets/vendor/boxicons/css/boxicons.min.css';
+import '@src/assets/vendor/glightbox/css/glightbox.min.css';
+import '@src/assets/vendor/swiper/swiper-bundle.min.css';
+import '@src/assets/css/style.css';
 
+import heroImg from "@src/assets/img/hero-img.png";
+import about from "@src/assets/img/about.jpg";
+import features from "@src/assets/img/features.svg";
+import testimonials1 from "@src/assets/img/testimonials/testimonials-1.jpg"
+import testimonials2 from "@src/assets/img/testimonials/testimonials-2.jpg"
+import testimonials3 from "@src/assets/img/testimonials/testimonials-3.jpg"
+import testimonials4 from "@src/assets/img/testimonials/testimonials-4.jpg"
+import testimonials5 from "@src/assets/img/testimonials/testimonials-5.jpg"
 
+import portfolio1 from "@src/assets/img/portfolio/portfolio-1.jpg";
+import portfolio2 from "@src/assets/img/portfolio/portfolio-2.jpg";
+import portfolio3 from "@src/assets/img/portfolio/portfolio-3.jpg";
+import portfolio4 from "@src/assets/img/portfolio/portfolio-4.jpg";
+import portfolio5 from "@src/assets/img/portfolio/portfolio-5.jpg";
+import portfolio6 from "@src/assets/img/portfolio/portfolio-6.jpg";
+import portfolio7 from "@src/assets/img/portfolio/portfolio-7.jpg";
+import portfolio8 from "@src/assets/img/portfolio/portfolio-8.jpg";
+import portfolio9 from "@src/assets/img/portfolio/portfolio-9.jpg";
 
 const Landing = () => {
 
@@ -41,7 +65,7 @@ const Landing = () => {
   <header id="header" className="fixed-top ">
     <div className="container d-flex align-items-center justify-content-between">
       <h1 className="logo">
-        <a href="index.html">Techie</a>
+        <a href="index.html">Bibliomed</a>
       </h1>
       
      
@@ -136,7 +160,7 @@ const Landing = () => {
     <div className="container-fluid" data-aos="fade-up">
       <div className="row justify-content-center">
         <div className="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>Bettter Digital Experience With Techie</h1>
+          <h1>Bettter Digital Experience With Bibliomed</h1>
           <h2>
             We are team of talented designers making websites with Bootstrap
           </h2>
@@ -151,7 +175,11 @@ const Landing = () => {
           data-aos="zoom-in"
           data-aos-delay={150}
         >
-          
+          <img
+            src={heroImg}
+            className="img-fluid animated"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -167,7 +195,7 @@ const Landing = () => {
             data-aos="zoom-in"
             data-aos-delay={150}
           >
-            
+            <img src={about} className="img-fluid" alt="" />
           </div>
           <div
             className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
@@ -449,7 +477,464 @@ const Landing = () => {
       </div>
     </section>
     {/* End Services Section */}
-   
+    {/* ======= Features Section ======= */}
+    <section id="features" className="features">
+      <div className="container" data-aos="fade-up">
+        <div className="section-title">
+          <h2>Features</h2>
+          <p>
+            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
+            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
+            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+            fugiat sit in iste officiis commodi quidem hic quas.
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-lg-6 order-2 order-lg-1 d-flex flex-column align-items-lg-center">
+            <div
+              className="icon-box mt-5 mt-lg-0"
+              data-aos="fade-up"
+              data-aos-delay={100}
+            >
+              <i className="bx bx-receipt" />
+              <h4>Est labore ad</h4>
+              <p>
+                Consequuntur sunt aut quasi enim aliquam quae harum pariatur
+                laboris nisi ut aliquip
+              </p>
+            </div>
+            <div
+              className="icon-box mt-5"
+              data-aos="fade-up"
+              data-aos-delay={200}
+            >
+              <i className="bx bx-cube-alt" />
+              <h4>Harum esse qui</h4>
+              <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt
+              </p>
+            </div>
+            <div
+              className="icon-box mt-5"
+              data-aos="fade-up"
+              data-aos-delay={300}
+            >
+              <i className="bx bx-images" />
+              <h4>Aut occaecati</h4>
+              <p>
+                Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut
+                maiores omnis facere
+              </p>
+            </div>
+            <div
+              className="icon-box mt-5"
+              data-aos="fade-up"
+              data-aos-delay={400}
+            >
+              <i className="bx bx-shield" />
+              <h4>Beatae veritatis</h4>
+              <p>
+                Expedita veritatis consequuntur nihil tempore laudantium vitae
+                denat pacta
+              </p>
+            </div>
+          </div>
+          <div
+            className="image col-lg-6 order-1 order-lg-2 "
+            data-aos="zoom-in"
+            data-aos-delay={100}
+          >
+            <img src={features} alt="" className="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* End Features Section */}
+    {/* ======= Testimonials Section ======= */}
+    <section id="testimonials" className="testimonials section-bg">
+      <div className="container" data-aos="fade-up">
+        <div className="section-title">
+          <h2>Testimonials</h2>
+          <p>
+            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
+            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
+            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+            fugiat sit in iste officiis commodi quidem hic quas.
+          </p>
+        </div>
+        <div
+          className="testimonials-slider swiper"
+          data-aos="fade-up"
+          data-aos-delay={100}
+        >
+          <div className="swiper-wrapper">
+            <div className="swiper-slide">
+              <div className="testimonial-item">
+                <p>
+                  <i className="bx bxs-quote-alt-left quote-icon-left" />
+                  Proin iaculis purus consequat sem cure digni ssim donec
+                  porttitora entum suscipit rhoncus. Accusantium quam, ultricies
+                  eget id, aliquam eget nibh et. Maecen aliquam, risus at
+                  semper.
+                  <i className="bx bxs-quote-alt-right quote-icon-right" />
+                </p>
+                <img
+                  src={testimonials1}
+                  className="testimonial-img"
+                  alt=""
+                />
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+              </div>
+            </div>
+            {/* End testimonial item */}
+            <div className="swiper-slide">
+              <div className="testimonial-item">
+                <p>
+                  <i className="bx bxs-quote-alt-left quote-icon-left" />
+                  Export tempor illum tamen malis malis eram quae irure esse
+                  labore quem cillum quid cillum eram malis quorum velit fore
+                  eram velit sunt aliqua noster fugiat irure amet legam anim
+                  culpa.
+                  <i className="bx bxs-quote-alt-right quote-icon-right" />
+                </p>
+                <img
+                  src={testimonials2}
+                  className="testimonial-img"
+                  alt=""
+                />
+                <h3>Sara Wilsson</h3>
+                <h4>Designer</h4>
+              </div>
+            </div>
+            {/* End testimonial item */}
+            <div className="swiper-slide">
+              <div className="testimonial-item">
+                <p>
+                  <i className="bx bxs-quote-alt-left quote-icon-left" />
+                  Enim nisi quem export duis labore cillum quae magna enim sint
+                  quorum nulla quem veniam duis minim tempor labore quem eram
+                  duis noster aute amet eram fore quis sint minim.
+                  <i className="bx bxs-quote-alt-right quote-icon-right" />
+                </p>
+                <img
+                  src={testimonials3}
+                  className="testimonial-img"
+                  alt=""
+                />
+                <h3>Jena Karlis</h3>
+                <h4>Store Owner</h4>
+              </div>
+            </div>
+            {/* End testimonial item */}
+            <div className="swiper-slide">
+              <div className="testimonial-item">
+                <p>
+                  <i className="bx bxs-quote-alt-left quote-icon-left" />
+                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa
+                  multos export minim fugiat minim velit minim dolor enim duis
+                  veniam ipsum anim magna sunt elit fore quem dolore labore.
+                  <i className="bx bxs-quote-alt-right quote-icon-right" />
+                </p>
+                <img
+                  src={testimonials4}
+                  className="testimonial-img"
+                  alt=""
+                />
+                <h3>Matt Brandon</h3>
+                <h4>Freelancer</h4>
+              </div>
+            </div>
+            {/* End testimonial item */}
+            <div className="swiper-slide">
+              <div className="testimonial-item">
+                <p>
+                  <i className="bx bxs-quote-alt-left quote-icon-left" />
+                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua
+                  veniam tempor noster veniam enim culpa labore duis sunt culpa
+                  nulla illum cillum fugiat legam esse veniam culpa.
+                  <i className="bx bxs-quote-alt-right quote-icon-right" />
+                </p>
+                <img
+                  src={testimonials5}
+                  className="testimonial-img"
+                  alt=""
+                />
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+              </div>
+            </div>
+            {/* End testimonial item */}
+          </div>
+          <div className="swiper-pagination" />
+        </div>
+      </div>
+    </section>
+    {/* End Testimonials Section */}
+    {/* ======= Portfolio Section ======= */}
+    <section id="portfolio" className="portfolio">
+      <div className="container" data-aos="fade-up">
+        <div className="section-title">
+          <h2>Portfolio</h2>
+          <p>
+            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
+            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
+            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+            fugiat sit in iste officiis commodi quidem hic quas.
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" className="filter-active">
+                All
+              </li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+        <div className="row portfolio-container">
+          <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio1}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>App 1</h4>
+                <p>App</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio1}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="App 1"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio2}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio2}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="Web 3"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio3}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>App 2</h4>
+                <p>App</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio3}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="App 2"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio4}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>Card 2</h4>
+                <p>Card</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio4}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="Card 2"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio5}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>Web 2</h4>
+                <p>Web</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio5}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="Web 2"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio6}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>App 3</h4>
+                <p>App</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio6}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="App 3"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio7}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>Card 1</h4>
+                <p>Card</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio7}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="Card 1"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio8}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>Card 3</h4>
+                <p>Card</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio8}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="Card 3"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div className="portfolio-wrap">
+              <img
+                src={portfolio9}
+                className="img-fluid"
+                alt=""
+              />
+              <div className="portfolio-info">
+                <h4>Web 3</h4>
+                <p>Web</p>
+              </div>
+              <div className="portfolio-links">
+                <a
+                  href={portfolio9}
+                  data-gallery="portfolioGallery"
+                  className="portfolio-lightbox"
+                  title="Web 3"
+                >
+                  <i className="bx bx-plus" />
+                </a>
+                <a href="portfolio-details.html" title="More Details">
+                  <i className="bx bx-link" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {/* End Portfolio Section */}
     {/* ======= Pricing Section ======= */}
     <section id="pricing" className="pricing section-bg">
       <div className="container" data-aos="fade-up">
@@ -824,7 +1309,7 @@ const Landing = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-3 col-md-6 footer-contact">
-            <h3>Techie</h3>
+            <h3>Bibliomed</h3>
             <p>
               A108 Adam Street <br />
               New York, NY 535022
@@ -902,7 +1387,7 @@ const Landing = () => {
           <div className="copyright">
             © Copyright{" "}
             <strong>
-              <span>Techie</span>
+              <span>Bibliomed</span>
             </strong>
             . All Rights Reserved
           </div>
@@ -910,7 +1395,7 @@ const Landing = () => {
             {/* All the links in the footer should remain intact. */}
             {/* You can delete the links only if you purchased the pro version. */}
             {/* Licensing information: https://bootstrapmade.com/license/ */}
-            {/* Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/techie-free-skin-bootstrap-3/ */}
+            {/* Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/Bibliomed-free-skin-bootstrap-3/ */}
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           </div>
         </div>
