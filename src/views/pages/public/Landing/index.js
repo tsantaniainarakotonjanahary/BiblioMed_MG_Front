@@ -17,6 +17,7 @@ import '@src/assets/vendor/glightbox/css/glightbox.min.css';
 import '@src/assets/vendor/swiper/swiper-bundle.min.css';
 import '@src/assets/css/style.css';
 
+
 import heroImg from "@src/assets/img/hero-img.png";
 import about from "@src/assets/img/about.jpg";
 import features from "@src/assets/img/features.svg";
@@ -37,8 +38,11 @@ import portfolio8 from "@src/assets/img/portfolio/portfolio-8.jpg";
 import portfolio9 from "@src/assets/img/portfolio/portfolio-9.jpg";
 
 const Landing = () => {
+
+
+
   return (
-    <div>
+    <div  >
       
   <header id="header" className="fixed-top ">
     <div className="container d-flex align-items-center justify-content-between">
@@ -164,7 +168,7 @@ const Landing = () => {
   </section>
   {/* End Hero */}
   <main id="main">
-    {/* ======= About Section ======= */}
+
     <section id="about" className="about">
       <div className="container">
         <div className="row">
