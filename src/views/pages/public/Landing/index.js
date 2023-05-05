@@ -37,28 +37,6 @@ import portfolio8 from "@src/assets/img/portfolio/portfolio-8.jpg";
 import portfolio9 from "@src/assets/img/portfolio/portfolio-9.jpg";
 
 const Landing = () => {
-
-  const [validateFile,setValidateFile] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const getValidatedFile = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-user`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token" : localStorage.getItem("token"),
-            }
-      }).then((response) => response.json()).then((data) => {
-         setValidateFile(data);
-          setIsLoading(false); 
-      }).catch((error) => { console.error(error); })
-    }
-    getValidatedFile();
-  },[])
-
-
   return (
     <div>
       
