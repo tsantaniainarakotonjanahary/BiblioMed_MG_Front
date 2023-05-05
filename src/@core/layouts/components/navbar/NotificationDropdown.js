@@ -19,7 +19,6 @@ import avatar15 from '@src/assets/images/portrait/small/avatar-s-15.jpg'
 const NotificationDropdown = () => {
   // ** Notification Array
   const notificationsArray = [
-    /*
     {
       img: avatar3,
       subtitle: 'Won the monthly best seller badge.',
@@ -85,31 +84,75 @@ const NotificationDropdown = () => {
           <span className='fw-bolder'>High memory</span>&nbsp;usage
         </p>
       )
-    }*/
+    }
   ]
 
+  // ** Function to render Notifications
+  /*eslint-disable */
   const renderNotificationItems = () => {
     return (
       <PerfectScrollbar
-        component='ul'
+        component='li'
         className='media-list scrollable-container'
         options={{
           wheelPropagation: false
         }}
-      > 
-        {notificationsArray.map((notification, index) => (
-          <li key={index}>
-            <img src={notification.img} alt="" />
-            <div className="media-body">
-              <span className="media-heading">{notification.title}</span>
-              <span>{notification.subtitle}</span>
-            </div>
-          </li>
-        ))}
-      </PerfectScrollbar> 
-    ) 
+      >
+        {notificationsArray.map((item, index) => {
+          return (
+            <a
+              key={index}
+              className='d-flex'
+              href={item.switch ? '#' : '/'}
+              onClick={e => {
+                if (!item.switch) {
+                  e.preventDefault()
+                }
+              }}
+            >
+              <div
+                className={classnames('list-item d-flex', {
+                  'align-items-start': !item.switch,
+                  'align-items-center': item.switch
+                })}
+              >
+                {!item.switch ? (
+                  <Fragment>
+                    <div className='me-1'>
+                      <Avatar
+                        {...(item.img
+                          ? { img: item.img, imgHeight: 32, imgWidth: 32 }
+                          : item.avatarContent
+                          ? {
+                              content: item.avatarContent,
+                              color: item.color
+                            }
+                          : item.avatarIcon
+                          ? {
+                              icon: item.avatarIcon,
+                              color: item.color
+                            }
+                          : null)}
+                      />
+                    </div>
+                    <div className='list-item-body flex-grow-1'>
+                      {item.title}
+                      <small className='notification-text'>{item.subtitle}</small>
+                    </div>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    {item.title}
+                    {item.switch}
+                  </Fragment>
+                )}
+              </div>
+            </a>
+          )
+        })}
+      </PerfectScrollbar>
+    )
   }
-  
   /*eslint-enable */
 
   return (

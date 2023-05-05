@@ -1,31 +1,16 @@
-// ** React Imports
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
-// ** Custom Hooks
 import { useSkin } from '@hooks/useSkin'
 import useJwt from '@src/auth/jwt/useJwt'
-
-// ** Third Party Components
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
 import { Facebook, Twitter, Mail, GitHub, HelpCircle, Coffee, X } from 'react-feather'
-
-// ** Actions
 import { handleLogin } from '@store/authentication'
-
-// ** Context
 import { AbilityContext } from '@src/utility/context/Can'
-
-// ** Custom Components
 import Avatar from '@components/avatar'
 import InputPasswordToggle from '@components/input-password-toggle'
-
-// ** Utils
 import { getHomeRouteForLoggedInUser } from '@utils'
-
-// ** Reactstrap Imports
 import {
   Row,
   Col,
@@ -40,11 +25,20 @@ import {
   UncontrolledTooltip
 } from 'reactstrap'
 
+import {
+  Navbar,
+  Nav,
+  NavItem,
+  NavLink,
+  Jumbotron,
+  Carousel,
+  CarouselItem,
+} from "reactstrap";
+
 // ** Illustrations Imports
 import illustrationsLight from '@src/assets/images/pages/login-v2.svg'
 import illustrationsDark from '@src/assets/images/pages/login-v2-dark.svg'
 
-// ** Styles
 import '@styles/react/pages/page-authentication.scss'
 
 const ToastContent = ({ t, name, role }) => {
@@ -175,7 +169,46 @@ const Login = () => {
         </Link>
         <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
           <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
-            <img className='img-fluid' src={source} alt='Login Cover' />
+
+
+
+     <div>
+      <header>
+        <h1 >My Website</h1>
+        <nav>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </header>
+      <main>
+        <section id="about">
+          <h2>About</h2>
+          <p>This is a website about me. I am a software engineer and I love to build things. I am also a big fan of technology and I am always looking for new ways to use it to make my life easier.</p>
+        </section>
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>You can contact me at <a href="mailto:me@example.com">me@example.com</a>.</p>
+        </section>
+        <section id="carousel">
+          <div id="carousel-container">
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Image%201&w=1000&h=600" alt="Image 1" />
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Image%202&w=1000&h=600" alt="Image 2" />
+            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Image%203&w=1000&h=600" alt="Image 3" />
+          </div>
+          <button id="prev-btn">Previous</button>
+          <button id="next-btn">Next</button>
+        </section>
+      </main>
+      <footer>
+        <p>Copyright &copy; 2023 My Website</p>
+      </footer>
+    </div>
+
+
+
+
+
+            
           </div>
         </Col>
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>

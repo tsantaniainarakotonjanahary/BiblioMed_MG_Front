@@ -7,7 +7,6 @@ import NodeGlobalsPolyfillPlugin from '@esbuild-plugins/node-globals-polyfill'
 
 export default () => {
   return defineConfig({
-    base: process.env.NODE_ENV === 'production' ? '/' : '/',
     plugins: [react()],
     define: {
       global: 'globalThis'

@@ -13,10 +13,6 @@
 /dist
 /demo-*
 
-.env
-
-.npmrc
-
 # misc
 .DS_Store
 .env.local
