@@ -9,7 +9,7 @@ import prism from 'prismjs'
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
-import heroImg from "@src/assets/img/hero-img.png";
+
 import about from "@src/assets/img/about.jpg";
 import features from "@src/assets/img/features.svg";
 import testimonials1 from "@src/assets/img/testimonials/testimonials-1.jpg"
@@ -167,11 +167,7 @@ const Landing = () => {
           data-aos="zoom-in"
           data-aos-delay={150}
         >
-          <img
-            src={heroImg}
-            className="img-fluid animated"
-            alt=""
-          />
+          
         </div>
       </div>
     </div>
