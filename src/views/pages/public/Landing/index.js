@@ -10,7 +10,7 @@ import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
 
-import about from "@src/assets/img/about.jpg";
+
 import features from "@src/assets/img/features.svg";
 import testimonials1 from "@src/assets/img/testimonials/testimonials-1.jpg"
 import testimonials2 from "@src/assets/img/testimonials/testimonials-2.jpg"
@@ -183,7 +183,7 @@ const Landing = () => {
             data-aos="zoom-in"
             data-aos-delay={150}
           >
-            <img src={about} className="img-fluid" alt="" />
+            
           </div>
           <div
             className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
