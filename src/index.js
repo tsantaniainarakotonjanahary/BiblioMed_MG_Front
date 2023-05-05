@@ -38,13 +38,20 @@ import 'prismjs/components/prism-jsx.min'
 // ** React Perfect Scrollbar
 import 'react-perfect-scrollbar/dist/css/styles.css'
 
-// ** React Hot Toast Styles
+
 import '@styles/react/libs/react-hot-toasts/react-hot-toasts.scss'
 
-// ** Core styles
 import './@core/assets/fonts/feather/iconfont.css'
 import './@core/scss/core.scss'
 import './assets/scss/style.scss'
+
+import '@src/assets/vendor/purecounter/purecounter_vanilla.js';
+
+import '@src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js';
+import '@src/assets/vendor/glightbox/js/glightbox.min.js';
+import '@src/assets/vendor/isotope-layout/isotope.pkgd.min.js';
+import '@src/assets/vendor/swiper/swiper-bundle.min.js';
+import '@src/assets/js/main.js';
 
 // ** Service Worker
 import * as serviceWorker from './serviceWorker'
