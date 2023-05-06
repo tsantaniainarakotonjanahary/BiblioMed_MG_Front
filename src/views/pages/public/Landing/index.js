@@ -9,6 +9,11 @@ import prism from 'prismjs'
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+
 import '@src/assets/vendor/aos/aos.css';
 import '@src/assets/vendor/bootstrap-icons/bootstrap-icons.css';
 import '@src/assets/vendor/bootstrap/css/bootstrap.min.css';
@@ -59,6 +64,11 @@ const Landing = () => {
             </a>
           </li>
           <li>
+            <a className="nav-link scrollto" href="#consulter">
+              Consulter
+            </a>
+          </li>
+          <li>
             <a className="nav-link scrollto" href="#about">
               About
             </a>
@@ -70,7 +80,7 @@ const Landing = () => {
           </li>
           <li>
             <a className="nav-link scrollto " href="#portfolio">
-              Portfolio
+              Album
             </a>
           </li>
           <li>
@@ -141,17 +151,17 @@ const Landing = () => {
   <section id="hero" className="d-flex align-items-center">
     <div className="container-fluid" data-aos="fade-up">
       <div className="row justify-content-center">
-        <div className="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-          <h1>Bettter Digital Experience With Bibliomed</h1>
-          <h2>
-            We are team of talented designers making websites with Bootstrap
-          </h2>
-          <div>
-            <a href="#about" className="btn-get-started scrollto">
-              Get Started
-            </a>
-          </div>
-        </div>
+      <div className="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+  <h1>Explorez l'univers du savoir avec Bibliomed</h1>
+  <h2>
+    Votre plateforme numérique sanitaire pour accéder facilement à une vaste collection de ressources médicales
+  </h2>
+  <div>
+    <a href="#about" className="btn-get-started scrollto">
+      Commencer
+    </a>
+  </div>
+</div>
         <div
           className="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img"
           data-aos="zoom-in"
@@ -169,6 +179,26 @@ const Landing = () => {
   {/* End Hero */}
   <main id="main">
 
+  <section id="consulter" className="about">
+      <div className="container">
+        <div className="row">
+          <div
+            className="col-lg-6 order-1 order-lg-2"
+            data-aos="zoom-in"
+            data-aos-delay={150}
+          >
+           
+          </div>
+          <div
+            className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
+            data-aos="fade-right"
+          >
+           
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="about" className="about">
       <div className="container">
         <div className="row">
@@ -183,34 +213,51 @@ const Landing = () => {
             className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
             data-aos="fade-right"
           >
-            <h3>Voluptatem dignissimos provident quasi corporis</h3>
-            <p className="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <ul>
-              <li>
-                <i className="bi bi-check-circle" /> Ullamco laboris nisi ut
-                aliquip ex ea commodo consequat.
-              </li>
-              <li>
-                <i className="bi bi-check-circle" /> Duis aute irure dolor in
-                reprehenderit in voluptate velit.
-              </li>
-              <li>
-                <i className="bi bi-check-circle" /> Ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                reprehenderit in voluptate trideta storacalaperda mastiro dolore
-                eu fugiat nulla pariatur.
-              </li>
-            </ul>
-            <a href="#" className="read-more">
-              Read More <i className="bi bi-long-arrow-right" />
-            </a>
+            <h3>Partagez et téléchargez des fichiers en toute simplicité</h3>
+<p className="fst-italic">
+  Notre plateforme vous permet de partager et télécharger des fichiers publics de manière sécurisée et efficace.
+</p>
+<ul>
+  <li>
+    <i className="bi bi-check-circle" /> Téléchargez des fichiers publics en un clic.
+  </li>
+  <li>
+    <i className="bi bi-check-circle" /> Partagez vos fichiers avec d'autres utilisateurs en toute sécurité.
+  </li>
+  <li>
+    <i className="bi bi-check-circle" /> Gérez facilement vos fichiers et contrôlez l'accès grâce à nos outils intuitifs.
+  </li>
+</ul>
+<a href="#" className="read-more">
+  En savoir plus <i className="bi bi-long-arrow-right" />
+</a>
           </div>
         </div>
       </div>
     </section>
+
+
+    
+  <section id="consulter" className="about">
+      <div className="container">
+        <div className="row">
+          <div
+            className="col-lg-6 order-1 order-lg-2"
+            data-aos="zoom-in"
+            data-aos-delay={150}
+          >
+           
+          </div>
+          <div
+            className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
+            data-aos="fade-right"
+          >
+           
+          </div>
+        </div>
+      </div>
+    </section>
+    
     {/* End About Section */}
     {/* ======= Counts Section ======= */}
     <section id="counts" className="counts">

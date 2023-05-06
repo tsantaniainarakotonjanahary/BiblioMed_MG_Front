@@ -61,8 +61,11 @@ const Register = () => {
 
   const [entities,setEntities] = useState([
     {id:"jdi",nom: "PMM"},
-    {id:"jdiK",nom: "USAID"},
+    {id:"jdiKD",nom: "USAID"},
+    {id:"jdiKDD",nom: "DEPSI"},
+    {id:"jdiKDGG",nom: "DPEV"},
   ]);
+
 
   const [entite,setEntite] = useState("");
 
@@ -214,6 +217,30 @@ const Register = () => {
                   ))}
                 </DropdownMenu>
               </Dropdown>
+
+    
+              <br></br>
+
+              <br></br>
+
+              <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+                <DropdownToggle caret>
+                {entite.nom ? entite.nom : "Selectioner type de compte " }
+                </DropdownToggle>
+                <DropdownMenu>
+                  
+                    <DropdownItem >
+                       Responsable 
+                    </DropdownItem>
+
+                    <DropdownItem  >
+                       Visiteur 
+                    </DropdownItem>
+                 
+                </DropdownMenu>
+              </Dropdown>
+
+
 
               <br></br>
 

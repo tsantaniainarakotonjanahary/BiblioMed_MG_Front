@@ -106,25 +106,8 @@ const CartDropdown = () => {
 
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle} tag='li' className='dropdown-cart nav-item me-25'>
-      <DropdownToggle tag='a' className='nav-link position-relative'>
-        <ShoppingCart className='ficon' />
-        {store.cart.length > 0 ? (
-          <Badge pill color='primary' className='badge-up'>
-            {store.cart.length}
-          </Badge>
-        ) : null}
-      </DropdownToggle>
-      <DropdownMenu end tag='ul' className='dropdown-menu-media dropdown-cart mt-0'>
-        <li className='dropdown-menu-header'>
-          <DropdownItem tag='div' className='d-flex' header>
-            <h4 className='notification-title mb-0 me-auto'>My Cart</h4>
-            <Badge color='light-primary' pill>
-              {store.cart.length || 0} Items
-            </Badge>
-          </DropdownItem>
-        </li>
-        {renderCartItems()}
-      </DropdownMenu>
+      
+     
     </Dropdown>
   )
 }

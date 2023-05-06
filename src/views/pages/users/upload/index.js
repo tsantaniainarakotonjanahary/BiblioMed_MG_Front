@@ -103,6 +103,10 @@ const UploadPage = () => {
     setFileUpload(fileUploaded);
   };
 
+  const handleSelectChange = (event) => {
+    console.log('Selected option:', event.target.value);
+  };
+
   const handleCheckboxChange = (event) => {
       const entityId = event.target.value;
       const isChecked = event.target.checked;
@@ -116,23 +120,51 @@ const UploadPage = () => {
   
     return (
       <div style={{width : "100%"}}>
-      <FormGroup>
-        <Label>Visibilite par entite</Label>
-        {entities.map(({ _id, nom }) => (
-          <FormGroup check inline key={_id}>
-            <Label check>
-              <Input
-                type="checkbox"
-                id={_id}
-                value={_id}
-                checked={visibilite.includes(_id)}
-                onChange={handleCheckboxChange}
-              />
-              {nom}
-            </Label>
-          </FormGroup>
-        ))}
-      </FormGroup>
+
+    <FormGroup>
+      <Label for="dropdownSelect">Thematique  :</Label>
+      <Input type="select" name="dropdownSelect" id="dropdownSelect" onChange={handleSelectChange}>
+        <option value="">Sélectionnez une Thematique</option>
+        <option value="option1">Document technique</option>
+        <option value="option2">Document stratégique</option>
+        <option value="option3">Résultats des recherches</option>
+        <option value="option3">Autres</option>
+      </Input>
+    </FormGroup>
+
+    <FormGroup>
+      <Label for="dropdownSelect">Sous-thematique :</Label>
+      <Input type="select" name="dropdownSelect" id="dropdownSelect" onChange={handleSelectChange}>
+        <option value="">Sélectionnez une sous-thematique </option>
+        <option value="option1">Système d’information Sanitaire</option>
+        <option value="option2">surveillance épidémiologique</option>
+        <option value="option3">Médecine traditionnelle</option>
+        <option value="option3">Paludisme</option>
+        <option value="option3">Vaccination</option>
+        <option value="option3">Santé de la mère et de l’enfant</option>
+        <option value="option3">VIH/SIDA</option>
+        <option value="option3">Tuberculose</option>
+        <option value="option3">Autres</option>
+      </Input>
+    </FormGroup>
+
+    <FormGroup>
+      <Label>Visibilite par entite</Label>
+      {entities.map(({ _id, nom }) => (
+        <FormGroup check inline key={_id}>
+          <Label check>
+            <Input
+              type="checkbox"
+              id={_id}
+              value={_id}
+              checked={visibilite.includes(_id)}
+              onChange={handleCheckboxChange}
+            />
+            {nom}
+          </Label>
+        </FormGroup>
+      ))}
+    </FormGroup>
 
       <div>
           <DirectoryInputs directory={directory} setDirectory={setDirectory} />

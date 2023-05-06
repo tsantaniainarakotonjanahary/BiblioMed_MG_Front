@@ -1,13 +1,9 @@
-// ** React Imports
 import { Link, Navigate } from 'react-router-dom'
 
-// ** Reactstrap Imports
 import { Row, Col, CardTitle, CardText, Form, Label, Input, Button } from 'reactstrap'
 
-// ** Utils
 import { isUserLoggedIn } from '@utils'
 
-// ** Custom Hooks
 import { useSkin } from '@hooks/useSkin'
 
 // ** Icons Imports
@@ -17,11 +13,9 @@ import { ChevronLeft } from 'react-feather'
 import illustrationsLight from '@src/assets/images/pages/forgot-password-v2.svg'
 import illustrationsDark from '@src/assets/images/pages/forgot-password-v2-dark.svg'
 
-// ** Styles
 import '@styles/react/pages/page-authentication.scss'
 
 const ForgotPassword = () => {
-  // ** Hooks
   const { skin } = useSkin()
 
   const source = skin === 'dark' ? illustrationsDark : illustrationsLight
