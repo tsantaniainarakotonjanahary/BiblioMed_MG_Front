@@ -42,6 +42,7 @@ export default () => {
         { find: 'stream', replacement: 'stream-browserify' },
         { find: 'crypto', replacement: 'crypto-browserify' },
         { find: '@src', replacement: path.resolve(__dirname, 'src') },
+        { find: '@vendor', replacement: path.resolve(__dirname, 'src/assets/vendor') },
         { find: '@store', replacement: path.resolve(__dirname, 'src/redux') },
         { find: '@configs', replacement: path.resolve(__dirname, 'src/configs') },
         { find: 'url', replacement: 'rollup-plugin-node-polyfills/polyfills/url' },
@@ -55,7 +56,49 @@ export default () => {
         { find: 'assert', replacement: 'rollup-plugin-node-polyfills/polyfills/assert' },
         { find: 'buffer', replacement: 'rollup-plugin-node-polyfills/polyfills/buffer-es6' },
         { find: 'process', replacement: 'rollup-plugin-node-polyfills/polyfills/process-es6' },
-        { find: '@components', replacement: path.resolve(__dirname, 'src/@core/components') }
+        { find: '@components', replacement: path.resolve(__dirname, 'src/@core/components') },
+        { find: 'desandro-matches-selector', replacement: require.resolve('matches-selector') },
+
+        {
+          find: 'ev-emitter',
+          replacement: 'ev-emitter',
+        },
+        {
+          find: 'get-size',
+          replacement: 'get-size',
+        },
+        {
+          find: 'fizzy-ui-utils',
+          replacement: 'fizzy-ui-utils',
+        },
+        {
+          find: 'outlayer',
+          replacement: 'outlayer',
+        },
+        {
+          find: 'masonry-layout',
+          replacement: 'masonry-layout',
+        },
+        {
+          find: 'isotope-layout/js/item',
+          replacement: 'isotope-layout/js/item.js',
+        },
+        {
+          find: 'isotope-layout/js/layout-mode',
+          replacement: 'isotope-layout/js/layout-mode.js',
+        },
+        {
+          find: 'isotope-layout/js/layout-modes/masonry',
+          replacement: 'isotope-layout/js/layout-modes/masonry.js',
+        },
+        {
+          find: 'isotope-layout/js/layout-modes/fit-rows',
+          replacement: 'isotope-layout/js/layout-modes/fit-rows.js',
+        },
+        {
+          find: 'isotope-layout/js/layout-modes/vertical',
+          replacement: 'isotope-layout/js/layout-modes/vertical.js',
+        },
       ]
     },
     esbuild: {
