@@ -1,5 +1,6 @@
 import { lazy } from 'react'
-
+const SousThematique = lazy(() => import('../../views/pages/admin/sousThematique'))
+const Thematique = lazy(() => import('../../views/pages/admin/thematique'))
 const Entities = lazy(() => import('../../views/pages/admin/entities'))
 const Files = lazy(() => import('../../views/pages/admin/files'))
 const Upload = lazy(() => import('../../views/pages/admin/upload'))
@@ -26,6 +27,22 @@ const AdminRoutes = [
   {
     path: '/admin/entities',
     element: <Entities />,
+    meta: {
+      action: 'manage',
+      resource: 'for-admin'
+    }
+  },
+  {
+    path: '/admin/thematique',
+    element: <Thematique />,
+    meta: {
+      action: 'manage',
+      resource: 'for-admin'
+    }
+  },
+  {
+    path: '/admin/sousThematique',
+    element: <SousThematique />,
     meta: {
       action: 'manage',
       resource: 'for-admin'

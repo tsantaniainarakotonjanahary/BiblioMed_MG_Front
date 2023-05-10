@@ -7,50 +7,83 @@ import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
 const AddModal = (props) => {
-  const { buttonLabel, className, modalData, onEntityAdded } = props;
+  const { buttonLabel, className, modalData, onSousThematiqueAdded } = props;
   const [modal, setModal] = useState(false);
   const [nom, setNom] = useState("");
-  const [description, setDescription] = useState("");
+  const [thematiques, setThematiques] = useState([]);
+  const [selectedThematique, setSelectedThematique] = useState("");
+
+  useEffect(() => {
+    const fetchThematiques = async () => {
+      try {
+        const response = await fetch('https://bibliotheque-medical-back.vercel.app/thematique', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          const data = await response.json();
+          setThematiques(data);
+          setSelectedThematique(data[0]?._id); // Set first thematique as selected by default
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchThematiques();
+  }, []);
+
   const toggle = () => setModal(!modal);
+
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/entite', {
+      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${selectedThematique}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nom, description })
+        body: JSON.stringify({ nom, thematique: selectedThematique })
       });
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         const data = await response.json();
-        console.log(data); 
+        console.log(data);
         setModal(false);
-        onEntityAdded(); 
+        onSousThematiqueAdded();
       }
-      
+
     } catch (error) {
       console.error(error);
     }
   };
+
   return (
     <div>
       <Button color="primary" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Ajouter le nouveau entite ici</ModalHeader>
+        <ModalHeader toggle={toggle}>Ajouter le nouveau sousThematique ici</ModalHeader>
         <ModalBody>
-            <Form>
-              <FormGroup>
-                <Label for="exampleEmail"> Nom </Label>
-                <Input id="exampleEmail" name="email" placeholder="entrer le nom ici" type="text" value={nom} onChange={e => setNom(e.target.value)} />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleText"> Description </Label>
-                <Input id="exampleText" name="text" type="textarea" value={description} onChange={e => setDescription(e.target.value)} />
-              </FormGroup>
-            </Form>
+          <Form>
+            <FormGroup>
+              <Label for="exampleEmail"> Nom </Label>
+              <Input id="exampleEmail" name="email" placeholder="entrer le nom ici" type="text" value={nom} onChange={e => setNom(e.target.value)} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="exampleSelect"> Thematique </Label>
+              <Input type="select" id="exampleSelect" value={selectedThematique} onChange={e => setSelectedThematique(e.target.value)}>
+                {thematiques.map(thematique => (
+                  <option key={thematique._id} value={thematique._id}>{thematique.nom}</option>
+                ))}
+              </Input>
+            </FormGroup>
+          </Form>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Annuler</Button>
@@ -62,22 +95,21 @@ const AddModal = (props) => {
 };
 
 
-function UpdateModal({ entity, onEntityUpdated }) {
+function UpdateModal({ SousThematique, onSousThematiqueUpdated }) {
   const [modal, setModal] = useState(false);
-  const [nom, setNom] = useState(entity.nom);
-  const [description, setDescription] = useState(entity.description);
+  const [nom, setNom] = useState(SousThematique.nom);
 
   const toggle = () => setModal(!modal);
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/entite/${entity._id}`, {
+      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${SousThematique._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'x-auth-token' : localStorage.getItem("token"),
         },
-        body: JSON.stringify({ nom, description })
+        body: JSON.stringify({ nom })
       });
       
       if (!response.ok) {
@@ -86,7 +118,7 @@ function UpdateModal({ entity, onEntityUpdated }) {
         const data = await response.json();
         console.log(data); 
         setModal(false);
-        onEntityUpdated(); // appeler la fonction de rappel ici
+        onSousThematiqueUpdated(); // appeler la fonction de rappel ici
       }
     } catch (error) {
       console.error(error);
@@ -105,10 +137,7 @@ function UpdateModal({ entity, onEntityUpdated }) {
             <Label for="nomField">Nom</Label>
             <Input id="nomField" placeholder="Nom" value={nom} onChange={e => setNom(e.target.value)} />
           </FormGroup>
-          <FormGroup>
-            <Label for="descField">Description</Label>
-            <Input id="descField" type="textarea" value={description} onChange={e => setDescription(e.target.value)} />
-          </FormGroup>
+         
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleUpdate}>
@@ -126,26 +155,26 @@ function UpdateModal({ entity, onEntityUpdated }) {
 
 
 
-const Entities = () => {
-  const [entities,setEntities] = useState([]);
-  const getEntities = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/entite`, {
+const SousThematiques = () => {
+  const [SousThematiques,setSousThematiques] = useState([]);
+  const getSousThematiques = async () => {
+        fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
                   "x-auth-token" : localStorage.getItem("token"),
                 }
-        }).then((response) => response.json()).then((data) => { setEntities(data); }).catch((error) => { console.error(error); })
+        }).then((response) => response.json()).then((data) => { setSousThematiques(data); }).catch((error) => { console.error(error); })
   }
       
   useEffect(() => {
-    getEntities();
+    getSousThematiques();
   },[])
 
 
-  const deleteEntity = async (id) => {
+  const deleteSousThematique = async (id) => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/entite/${id}`, {
+      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +185,7 @@ const Entities = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
-        getEntities();
+        getSousThematiques();
       }
     } catch (error) {
       console.error(error);
@@ -167,30 +196,30 @@ const Entities = () => {
         return (
           <Row>
             <Col md='12' sm='12'>
-              <Card title={"Gestion des entites"} >
-                    <AddModal buttonLabel="Ajouter nouveau" modalData="This is the data inside the modal" onEntityAdded={getEntities} />
+              <Card title={"Gestion des sousThematiques"} >
+                    <AddModal buttonLabel="Ajouter nouveau" modalData="This is the data inside the modal" onSousThematiqueAdded={getSousThematiques} />
                     <br/>
               <Table>
                 <thead>
                   <tr>
                     <th>N </th>
                     <th>Nom </th>
-                    <th>Description </th>
+                   
                     <th> </th>
                     <th> </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {entities.map((entity, index) => (
-                      <tr key={entity._id}>
+                  {SousThematiques.map((SousThematique, index) => (
+                      <tr key={SousThematique._id}>
                         <td>{index + 1}</td>
-                        <td>{entity.nom}</td>
-                        <td>{entity.description}</td>
+                        <td>{SousThematique.nom}</td>
+                        
                         <td>
-                          <UpdateModal entity={entity} onEntityUpdated={getEntities} />
+                          <UpdateModal SousThematique={SousThematique} onSousThematiqueUpdated={getSousThematiques} />
                         </td>
                         <td>
-                          <Button color="danger" onClick={() => deleteEntity(entity._id)}> Supprimer </Button>
+                          <Button color="danger" onClick={() => deleteSousThematique(SousThematique._id)}> Supprimer </Button>
                         </td>
                       </tr>
                   ))}
@@ -202,4 +231,4 @@ const Entities = () => {
   )
 };
 
-export default Entities;
+export default SousThematiques;

@@ -7,19 +7,19 @@ import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
 const AddModal = (props) => {
-  const { buttonLabel, className, modalData, onEntityAdded } = props;
+  const { buttonLabel, className, modalData, onThematiqueAdded } = props;
   const [modal, setModal] = useState(false);
   const [nom, setNom] = useState("");
-  const [description, setDescription] = useState("");
+
   const toggle = () => setModal(!modal);
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/entite', {
+      const response = await fetch('https://bibliotheque-medical-back.vercel.app/thematique', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nom, description })
+        body: JSON.stringify({ nom })
       });
       
       if (!response.ok) {
@@ -28,7 +28,7 @@ const AddModal = (props) => {
         const data = await response.json();
         console.log(data); 
         setModal(false);
-        onEntityAdded(); 
+        onThematiqueAdded(); 
       }
       
     } catch (error) {
@@ -39,16 +39,12 @@ const AddModal = (props) => {
     <div>
       <Button color="primary" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Ajouter le nouveau entite ici</ModalHeader>
+        <ModalHeader toggle={toggle}>Ajouter le nouveau thematique ici</ModalHeader>
         <ModalBody>
             <Form>
               <FormGroup>
                 <Label for="exampleEmail"> Nom </Label>
                 <Input id="exampleEmail" name="email" placeholder="entrer le nom ici" type="text" value={nom} onChange={e => setNom(e.target.value)} />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleText"> Description </Label>
-                <Input id="exampleText" name="text" type="textarea" value={description} onChange={e => setDescription(e.target.value)} />
               </FormGroup>
             </Form>
         </ModalBody>
@@ -62,22 +58,21 @@ const AddModal = (props) => {
 };
 
 
-function UpdateModal({ entity, onEntityUpdated }) {
+function UpdateModal({ Thematique, onThematiqueUpdated }) {
   const [modal, setModal] = useState(false);
-  const [nom, setNom] = useState(entity.nom);
-  const [description, setDescription] = useState(entity.description);
+  const [nom, setNom] = useState(Thematique.nom);
 
   const toggle = () => setModal(!modal);
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/entite/${entity._id}`, {
+      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/thematique/${Thematique._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'x-auth-token' : localStorage.getItem("token"),
         },
-        body: JSON.stringify({ nom, description })
+        body: JSON.stringify({ nom })
       });
       
       if (!response.ok) {
@@ -86,7 +81,7 @@ function UpdateModal({ entity, onEntityUpdated }) {
         const data = await response.json();
         console.log(data); 
         setModal(false);
-        onEntityUpdated(); // appeler la fonction de rappel ici
+        onThematiqueUpdated(); // appeler la fonction de rappel ici
       }
     } catch (error) {
       console.error(error);
@@ -105,10 +100,7 @@ function UpdateModal({ entity, onEntityUpdated }) {
             <Label for="nomField">Nom</Label>
             <Input id="nomField" placeholder="Nom" value={nom} onChange={e => setNom(e.target.value)} />
           </FormGroup>
-          <FormGroup>
-            <Label for="descField">Description</Label>
-            <Input id="descField" type="textarea" value={description} onChange={e => setDescription(e.target.value)} />
-          </FormGroup>
+         
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleUpdate}>
@@ -126,26 +118,26 @@ function UpdateModal({ entity, onEntityUpdated }) {
 
 
 
-const Entities = () => {
-  const [entities,setEntities] = useState([]);
-  const getEntities = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/entite`, {
+const Thematiques = () => {
+  const [Thematiques,setThematiques] = useState([]);
+  const getThematiques = async () => {
+        fetch(`https://bibliotheque-medical-back.vercel.app/thematique`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
                   "x-auth-token" : localStorage.getItem("token"),
                 }
-        }).then((response) => response.json()).then((data) => { setEntities(data); }).catch((error) => { console.error(error); })
+        }).then((response) => response.json()).then((data) => { setThematiques(data); }).catch((error) => { console.error(error); })
   }
       
   useEffect(() => {
-    getEntities();
+    getThematiques();
   },[])
 
 
-  const deleteEntity = async (id) => {
+  const deleteThematique = async (id) => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/entite/${id}`, {
+      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/thematique/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +148,7 @@ const Entities = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
-        getEntities();
+        getThematiques();
       }
     } catch (error) {
       console.error(error);
@@ -167,30 +159,30 @@ const Entities = () => {
         return (
           <Row>
             <Col md='12' sm='12'>
-              <Card title={"Gestion des entites"} >
-                    <AddModal buttonLabel="Ajouter nouveau" modalData="This is the data inside the modal" onEntityAdded={getEntities} />
+              <Card title={"Gestion des thematiques"} >
+                    <AddModal buttonLabel="Ajouter nouveau" modalData="This is the data inside the modal" onThematiqueAdded={getThematiques} />
                     <br/>
               <Table>
                 <thead>
                   <tr>
                     <th>N </th>
                     <th>Nom </th>
-                    <th>Description </th>
+                   
                     <th> </th>
                     <th> </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {entities.map((entity, index) => (
-                      <tr key={entity._id}>
+                  {Thematiques.map((Thematique, index) => (
+                      <tr key={Thematique._id}>
                         <td>{index + 1}</td>
-                        <td>{entity.nom}</td>
-                        <td>{entity.description}</td>
+                        <td>{Thematique.nom}</td>
+                        
                         <td>
-                          <UpdateModal entity={entity} onEntityUpdated={getEntities} />
+                          <UpdateModal Thematique={Thematique} onThematiqueUpdated={getThematiques} />
                         </td>
                         <td>
-                          <Button color="danger" onClick={() => deleteEntity(entity._id)}> Supprimer </Button>
+                          <Button color="danger" onClick={() => deleteThematique(Thematique._id)}> Supprimer </Button>
                         </td>
                       </tr>
                   ))}
@@ -202,4 +194,4 @@ const Entities = () => {
   )
 };
 
-export default Entities;
+export default Thematiques;
