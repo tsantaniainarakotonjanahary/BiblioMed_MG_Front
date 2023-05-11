@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 import { List } from 'react-feather'
 
@@ -11,6 +11,7 @@ import { kFormatter } from '@utils'
 import { ThemeColors } from '@src/utility/context/ThemeColors'
 
 import { Row, Col, Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+import {  Table } from 'reactstrap'
 
 // ** Demo Components
 import InvoiceList from '@src/views/apps/invoice/list'
@@ -34,99 +35,131 @@ import avatar20 from '@src/assets/images/portrait/small/avatar-s-20.jpg'
 
 // ** Styles
 import '@styles/react/libs/charts/apex-charts.scss'
+
 const AnalyticsDashboard = () => {
+  const [top10read, setTop10read] = useState([])
+  const [fileCount, setFileCount] = useState(0)
+  const [top10recent, setTop10recent] = useState([])
 
-   // ** Context
-   const { colors } = useContext(ThemeColors)
+  useEffect(() => {
+    fetch('https://bibliotheque-medical-back.vercel.app/file/top10read')
+      .then(response => response.json())
+      .then(data => setTop10read(data))
+      .catch(error => console.error(`Error fetching top 10 most read files: ${error}`))
 
-   // ** Vars
-   const avatarGroupArr = [
-     {
-       imgWidth: 33,
-       imgHeight: 33,
-       title: 'Billy Hopkins',
-       placement: 'bottom',
-       img: avatar9
-     },
-     {
-       imgWidth: 33,
-       imgHeight: 33,
-       title: 'Amy Carson',
-       placement: 'bottom',
-       img: avatar6
-     },
-     {
-       imgWidth: 33,
-       imgHeight: 33,
-       title: 'Brandon Miles',
-       placement: 'bottom',
-       img: avatar8
-     },
-     {
-       imgWidth: 33,
-       imgHeight: 33,
-       title: 'Daisy Weber',
-       placement: 'bottom',
-       img: avatar7
-     },
-     {
-       imgWidth: 33,
-       imgHeight: 33,
-       title: 'Jenny Looper',
-       placement: 'bottom',
-       img: avatar20
-     }
-   ]
-   const data = [
-     {
-       title: '12 Invoices have been paid',
-       content: 'Invoices have been paid to the company.',
-       meta: '',
-       metaClassName: 'me-1',
-       customContent: (
-         <div className='d-flex align-items-center'>
-           <img className='me-1' src={jsonImg} alt='data.json' height='23' />
-           <span>data.json</span>
-         </div>
-       )
-     },
-     {
-       title: 'Client Meeting',
-       content: 'Project meeting with john @10:15am.',
-       meta: '',
-       metaClassName: 'me-1',
-       color: 'warning',
-       customContent: (
-         <div className='d-flex align-items-center'>
-           <Avatar img={avatar9} />
-           <div className='ms-50'>
-             <h6 className='mb-0'>John Doe (Client)</h6>
-             <span>CEO of Infibeam</span>
-           </div>
-         </div>
-       )
-     },
-     {
-       title: 'Create a new project for client',
-       content: 'Add files to new design folder',
-       color: 'info',
-       meta: '',
-       metaClassName: 'me-1',
-       customContent: <AvatarGroup data={avatarGroupArr} />
-     },
-     {
-       title: 'Create a new project for client',
-       content: 'Add files to new design folder',
-       color: 'danger',
-       meta: '',
-       metaClassName: 'me-1'
-     }
-   ]
-  
+    fetch('https://bibliotheque-medical-back.vercel.app/file/filecount')
+      .then(response => response.json())
+      .then(data => setFileCount(data.fileCount))
+      .catch(error => console.error(`Error fetching file count: ${error}`))
+
+    fetch('https://bibliotheque-medical-back.vercel.app/file/top10recent')
+      .then(response => response.json())
+      .then(data => setTop10recent(data))
+      .catch(error => console.error(`Error fetching top 10 most recent files: ${error}`))
+  }, [])
 
   return (
     <div id='dashboard-analytics'>
+      <Row className='match-height'>
+        <Col lg='6' sm='6'>
+          <Card>
+            <CardBody>
+              <CardTitle tag='h5'>File Count</CardTitle>
+              <h1>{fileCount}</h1>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col lg='6' sm='6'>
+          <h1> search</h1>
+        </Col>
+      </Row>
      
+      <Row className='match-height'>
+        <Col lg='12' sm='12'>
+          <Card>
+            <CardBody>
+              <CardTitle tag='h5'>Top 10 Most Recent Files</CardTitle>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Theme</th>
+                    <th>Sub-Theme</th>
+                    
+                    <th>Date Uploaded</th>
+                    <th></th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {top10recent.map((file, index) => (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{file.titre}</td>
+                      <td>{file.description}</td>
+                      <td>{file.thematique}</td>
+                      <td>{file.sousThematique}</td>
+  
+                      <td>{file.date}</td>
+                      <td>
+                        <a href={file.lien} >voir</a>
+                      </td>
+                      
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+
+            </CardBody>
+          </Card>
+        </Col>
+      
+      </Row>
+      <Row className='match-height'>
+        <Col lg='12' sm='12'>
+            <Card>
+              <CardBody>
+                <CardTitle tag='h5'>Top 10 Most Read Files</CardTitle>
+                <Table>
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Theme</th>
+                    <th>Sub-Theme</th>
+                    
+                    <th>Date Uploaded</th>
+                    <th>Nombre des lecteurs</th>
+                    <th></th>
+                    
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {top10read.map((file, index) => (
+                      <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{file.titre}</td>
+                      <td>{file.description}</td>
+                      <td>{file.thematique}</td>
+                      <td>{file.sousThematique}</td>
+  
+                      <td>{file.date}</td>
+                      <th>{file.readerCount}</th>
+                      <td>
+                        <a href={file.lien} >voir</a>
+                      </td>
+                      
+                    </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </CardBody>
+            </Card>
+          </Col>
+      </Row>
     </div>
   )
 }
