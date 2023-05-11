@@ -36,13 +36,11 @@ const ByEntity = () => {
   };
 
   const getTypeFromLink = (link) => {
-    const fileName = link.split('?')[0];  // this will remove the query string
+    const fileName = link.split('?')[0];  
     const extensionWithExtra = fileName.split('.').pop();
-    
-    // Assuming file extension is 3 characters long
+  
     let extension = extensionWithExtra.substring(0, 3);
-    
-    // If extension is 4 characters long (like 'xlsx', 'docx')
+  
     if (['xlsx', 'docx'].includes(extensionWithExtra.substring(0, 4))) {
       extension = extensionWithExtra.substring(0, 4);
     }
