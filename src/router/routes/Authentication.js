@@ -116,7 +116,9 @@ const AuthenticationRoutes = [
     path: '/pages/reset-password-basic',
     element: <ResetPasswordBasic />,
     meta: {
-      layout: 'blank'
+      layout: 'blank',
+      publicRoute: true,
+      restricted: true
     }
   },
   {
