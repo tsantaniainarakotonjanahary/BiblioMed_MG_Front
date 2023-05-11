@@ -9,9 +9,10 @@ import prism from 'prismjs'
 import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
+import {  CardHeader,  Form , FormGroup , Label , Input } from 'reactstrap'
 
+import Downshift from 'downshift'
 
 
 import '@src/assets/vendor/aos/aos.css';
@@ -43,6 +44,48 @@ import portfolio8 from "@src/assets/img/portfolio/portfolio-8.jpg";
 import portfolio9 from "@src/assets/img/portfolio/portfolio-9.jpg";
 
 const Landing = () => {
+
+  const [top10read, setTop10read] = useState([])
+  const [fileCount, setFileCount] = useState(0)
+  const [top10recent, setTop10recent] = useState([])
+
+  const [allFiles, setAllFiles] = useState([])
+
+
+
+  const searchFields = ['thematique', 'sousThematique', 'nom']
+
+  const getFilteredItems = (value) => {
+    if (!value) {
+      return []
+    }
+
+    return allFiles.filter(file => {
+      return searchFields.some(field => file[field]?.toLowerCase().includes(value.toLowerCase()))
+    })
+  }
+
+  useEffect(() => {
+    fetch('https://bibliotheque-medical-back.vercel.app/file/allfiles')
+    .then(response => response.json())
+    .then(data => setAllFiles(data))
+    .catch(error => console.error(`Error fetching all files: ${error}`))
+
+    fetch('https://bibliotheque-medical-back.vercel.app/file/top10read')
+      .then(response => response.json())
+      .then(data => setTop10read(data))
+      .catch(error => console.error(`Error fetching top 10 most read files: ${error}`))
+
+    fetch('https://bibliotheque-medical-back.vercel.app/file/filecount')
+      .then(response => response.json())
+      .then(data => setFileCount(data.fileCount))
+      .catch(error => console.error(`Error fetching file count: ${error}`))
+
+    fetch('https://bibliotheque-medical-back.vercel.app/file/top10recent')
+      .then(response => response.json())
+      .then(data => setTop10recent(data))
+      .catch(error => console.error(`Error fetching top 10 most recent files: ${error}`))
+  }, [])
 
 
 
@@ -242,18 +285,67 @@ const Landing = () => {
       <div className="container">
         <div className="row">
           <div
-            className="col-lg-6 order-1 order-lg-2"
+            className="col-lg-12 order-1 order-lg-2"
             data-aos="zoom-in"
             data-aos-delay={150}
           >
            
-          </div>
-          <div
-            className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
-            data-aos="fade-right"
-          >
+
            
+        <Card>
+            <CardBody>
+              <CardTitle tag='h5'>Recherche</CardTitle>
+              <Downshift
+          onChange={selection => console.log('selected item', selection)}
+          itemToString={item => (item ? `${item.nom} - ${item.thematique} - ${item.sousThematique}` : '')}
+        >
+          {({
+            getInputProps,
+            getItemProps,
+            getLabelProps,
+            getMenuProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+            selectedItem,
+            getRootProps
+          }) => (
+            <div {...getRootProps({}, {suppressRefError: true})}>
+              <Form>
+                <FormGroup>
+                  <Label {...getLabelProps()}>Thematique ou Sous-Thematique ou Nom de fichier</Label>
+                  <Input {...getInputProps()} />
+                </FormGroup>
+              </Form>
+              <ul {...getMenuProps()}>
+                {isOpen &&
+                  getFilteredItems(inputValue).map((item, index) => (
+                    <li
+                      {...getItemProps({
+                        key: item._id,
+                        index,
+                        item,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? 'lightgray' : 'white',
+                          fontWeight: selectedItem === item ? 'bold' : 'normal',
+                        },
+                      })}
+                    >
+                      {item.nom} - {item.thematique} - {item.sousThematique}
+                      <Button color="primary" href={item.lien} target="_blank">View</Button>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
+        </Downshift>
+            </CardBody>
+          </Card>
+       
+
           </div>
+         
         </div>
       </div>
     </section>
@@ -701,7 +793,7 @@ const Landing = () => {
       </div>
     </section>
     {/* End Testimonials Section */}
-    {/* ======= Portfolio Section ======= */}
+    {/* 
     <section id="portfolio" className="portfolio">
       <div className="container" data-aos="fade-up">
         <div className="section-title">
@@ -965,118 +1057,7 @@ const Landing = () => {
     </section>
     {/* End Portfolio Section */}
     {/* ======= Pricing Section ======= */}
-    <section id="pricing" className="pricing section-bg">
-      <div className="container" data-aos="fade-up">
-        <div className="section-title">
-          <h2>Pricing</h2>
-          <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
-            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
-            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-            fugiat sit in iste officiis commodi quidem hic quas.
-          </p>
-        </div>
-        <div className="row">
-          <div
-            className="col-lg-3 col-md-6"
-            data-aos="fade-up"
-            data-aos-delay={100}
-          >
-            <div className="box">
-              <h3>Free</h3>
-              <h4>
-                <sup>$</sup>0<span> / month</span>
-              </h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li className="na">Pharetra massa</li>
-                <li className="na">Massa ultricies mi</li>
-              </ul>
-              <div className="btn-wrap">
-                <a href="#" className="btn-buy">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className="col-lg-3 col-md-6 mt-4 mt-md-0"
-            data-aos="fade-up"
-            data-aos-delay={200}
-          >
-            <div className="box featured">
-              <h3>Business</h3>
-              <h4>
-                <sup>$</sup>19<span> / month</span>
-              </h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li className="na">Massa ultricies mi</li>
-              </ul>
-              <div className="btn-wrap">
-                <a href="#" className="btn-buy">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className="col-lg-3 col-md-6 mt-4 mt-lg-0"
-            data-aos="fade-up"
-            data-aos-delay={300}
-          >
-            <div className="box">
-              <h3>Developer</h3>
-              <h4>
-                <sup>$</sup>29<span> / month</span>
-              </h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li>Massa ultricies mi</li>
-              </ul>
-              <div className="btn-wrap">
-                <a href="#" className="btn-buy">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div
-            className="col-lg-3 col-md-6 mt-4 mt-lg-0"
-            data-aos="fade-up"
-            data-aos-delay={400}
-          >
-            <div className="box">
-              <span className="advanced">Advanced</span>
-              <h3>Ultimate</h3>
-              <h4>
-                <sup>$</sup>49<span> / month</span>
-              </h4>
-              <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li>Massa ultricies mi</li>
-              </ul>
-              <div className="btn-wrap">
-                <a href="#" className="btn-buy">
-                  Buy Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     {/* End Pricing Section */}
     {/* ======= Frequently Asked Questions Section ======= */}
     <section id="faq" className="faq">

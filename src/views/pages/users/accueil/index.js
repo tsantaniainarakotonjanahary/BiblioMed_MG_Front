@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
-
+import Downshift from 'downshift'
 import { List } from 'react-feather'
 
 import Avatar from '@components/avatar'
@@ -10,7 +10,7 @@ import { kFormatter } from '@utils'
 
 import { ThemeColors } from '@src/utility/context/ThemeColors'
 
-import { Row, Col, Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardTitle, CardBody , Form , FormGroup , Label , Input , Button} from 'reactstrap'
 import {  Table } from 'reactstrap'
 
 // ** Demo Components
@@ -41,7 +41,28 @@ const AnalyticsDashboard = () => {
   const [fileCount, setFileCount] = useState(0)
   const [top10recent, setTop10recent] = useState([])
 
+  const [allFiles, setAllFiles] = useState([])
+
+
+
+  const searchFields = ['thematique', 'sousThematique', 'nom']
+
+  const getFilteredItems = (value) => {
+    if (!value) {
+      return []
+    }
+
+    return allFiles.filter(file => {
+      return searchFields.some(field => file[field]?.toLowerCase().includes(value.toLowerCase()))
+    })
+  }
+
   useEffect(() => {
+    fetch('https://bibliotheque-medical-back.vercel.app/file/allfiles')
+    .then(response => response.json())
+    .then(data => setAllFiles(data))
+    .catch(error => console.error(`Error fetching all files: ${error}`))
+
     fetch('https://bibliotheque-medical-back.vercel.app/file/top10read')
       .then(response => response.json())
       .then(data => setTop10read(data))
@@ -66,11 +87,60 @@ const AnalyticsDashboard = () => {
             <CardBody>
               <CardTitle tag='h5'>File Count</CardTitle>
               <h1>{fileCount}</h1>
-            </CardBody>
+              </CardBody>
           </Card>
         </Col>
         <Col lg='6' sm='6'>
-          <h1> search</h1>
+        <Card>
+            <CardBody>
+              <CardTitle tag='h5'>Recherche</CardTitle>
+              <Downshift
+          onChange={selection => console.log('selected item', selection)}
+          itemToString={item => (item ? `${item.nom} - ${item.thematique} - ${item.sousThematique}` : '')}
+        >
+          {({
+            getInputProps,
+            getItemProps,
+            getLabelProps,
+            getMenuProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+            selectedItem,
+            getRootProps
+          }) => (
+            <div {...getRootProps({}, {suppressRefError: true})}>
+              <Form>
+                <FormGroup>
+                  <Label {...getLabelProps()}>Thematique ou Sous-Thematique ou Nom de fichier</Label>
+                  <Input {...getInputProps()} />
+                </FormGroup>
+              </Form>
+              <ul {...getMenuProps()}>
+                {isOpen &&
+                  getFilteredItems(inputValue).map((item, index) => (
+                    <li
+                      {...getItemProps({
+                        key: item._id,
+                        index,
+                        item,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? 'lightgray' : 'white',
+                          fontWeight: selectedItem === item ? 'bold' : 'normal',
+                        },
+                      })}
+                    >
+                      {item.nom} - {item.thematique} - {item.sousThematique}
+                      <Button color="primary" href={item.lien} target="_blank">View</Button>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
+        </Downshift>
+            </CardBody>
+          </Card>
         </Col>
       </Row>
      
