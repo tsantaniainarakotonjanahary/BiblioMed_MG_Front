@@ -1,34 +1,25 @@
-// ** React Imports
-import { Link } from 'react-router-dom'
-
-// ** Icons Imports
-import { ChevronLeft } from 'react-feather'
-
-// ** Custom Components
-import InputPassword from '@components/input-password-toggle'
-
-// ** Reactstrap Imports
-import { Card, CardBody, CardTitle, CardText, Form, Label, Button } from 'reactstrap'
-
-// ** Styles
-import '@styles/react/pages/page-authentication.scss'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ChevronLeft } from 'react-feather';
+import { Card, CardBody, CardTitle, CardText, Form, Label, Button } from 'reactstrap';
+import InputPassword from '@components/input-password-toggle';
+import '@styles/react/pages/page-authentication.scss';
 
 const ResetPasswordBasic = () => {
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Retrieve the values from the input fields
-    const newPassword = document.getElementById('new-password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-
     if (newPassword !== confirmPassword) {
-      // Handle password mismatch error
+      setErrorMessage('Passwords do not match');
       return;
     }
 
-    // Extract the token value from the URL
-    const searchParams = new URLSearchParams(window.location.search);
-    const token = searchParams.get('token');
+    const token = new URLSearchParams(window.location.search).get('token');
 
     try {
       const response = await fetch('https://bibliotheque-medical-back.vercel.app/user/reset-password', {
@@ -45,12 +36,13 @@ const ResetPasswordBasic = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Handle success message
+        setSuccessMessage('Password reset successful');
+        console.log("Successs");
       } else {
-        // Handle error message
+        setErrorMessage(data.message);
       }
     } catch (error) {
-      // Handle error message
+      setErrorMessage('An error occurred');
       console.log(error);
     }
   };
@@ -75,30 +67,42 @@ const ResetPasswordBasic = () => {
                 <Label className='form-label' for='new-password'>
                   New Password
                 </Label>
-                <InputPassword className='input-group-merge' id='new-password' autoFocus />
+                <InputPassword
+                  className='input-group-merge'
+                  id='new-password'
+                  autoFocus
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
               </div>
               <div className='mb-1'>
                 <Label className='form-label' for='confirm-password'>
                   Confirm Password
                 </Label>
-                <InputPassword className='input-group-merge' id='confirm-password' />
+                <InputPassword
+                  className='input-group-merge'
+                  id='confirm-password'
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
               </div>
               <Button color='primary' block type='submit'>
                 Set New Password
               </Button>
+              {errorMessage && <p className='text-danger mt-2'>{errorMessage}</p>}
+              {successMessage && <p className='text-success mt-2'>{successMessage}</p>}
             </Form>
             <p className='text-center mt-2'>
-              <Link to='/pages/login-basic'>
-                <ChevronLeft className='rotate-rtl me-25' size={14} />
-                <span className='align-middle'>Back to login</span>
-              </Link>
-            </p>
-          </CardBody>
-        </Card>
-      </div>
-    </div>
-  );
+<Link to='/pages/login-basic'>
+<ChevronLeft className='rotate-rtl me-25' size={14} />
+<span className='align-middle'>Back to login</span>
+</Link>
+</p>
+</CardBody>
+</Card>
+</div>
+</div>
+);
 };
 
 export default ResetPasswordBasic;
-``
