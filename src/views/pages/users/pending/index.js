@@ -37,7 +37,6 @@ const Pending = () => {
         <Table>
           <thead>
             <tr>
-              <th>Repertoire et categorie </th>
               <th>Titre</th>
               <th>Description</th>
               <th>Fichier</th>
@@ -52,12 +51,11 @@ const Pending = () => {
                
               ) : (notValidateFile.map((item,index) => (
                 <tr key={index}>
-                  <td>{item.dossier}</td>
-                  <td>{item.fichier.titre}</td>
-                  <td>{item.fichier.description}</td>
-                  <td>{item.fichier.nom}</td>
-                  <td>{item.fichier.date}</td>
-                  <td>{item.fichier.user.nom}</td>
+                  <td>{item.titre}</td>
+                  <td>{item.description}</td>
+                  <td>{item.nom}</td>
+                  <td>{item.date}</td>
+                  <td>{item.user.nom}</td>
                 </tr>
             )))}
           </tbody>

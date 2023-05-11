@@ -7,61 +7,57 @@ import Card from '@components/card-snippet'
 import Breadcrumbs from '@components/breadcrumbs'
 
 const AddModal = (props) => {
+
   const { buttonLabel, className, modalData, onSousThematiqueAdded } = props;
   const [modal, setModal] = useState(false);
   const [nom, setNom] = useState("");
   const [thematiques, setThematiques] = useState([]);
   const [selectedThematique, setSelectedThematique] = useState("");
-
+  
   useEffect(() => {
     const fetchThematiques = async () => {
       try {
         const response = await fetch('https://bibliotheque-medical-back.vercel.app/thematique', {
           method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers: { 'Content-Type': 'application/json' },
         });
-
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         } else {
           const data = await response.json();
           setThematiques(data);
-          setSelectedThematique(data[0]?._id); // Set first thematique as selected by default
+          setSelectedThematique(data[0]._id+"/"+data[0].nom); 
         }
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchThematiques();
   }, []);
 
   const toggle = () => setModal(!modal);
 
   const handleSubmit = async () => {
-    try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${selectedThematique}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ nom, thematique: selectedThematique })
-      });
+      try {
+        const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${selectedThematique.split("/")[0]}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nom, thematique: selectedThematique.split("/")[1] , idThematique : selectedThematique.split("/")[0] })
+        });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
-        const data = await response.json();
-        console.log(data);
-        setModal(false);
-        onSousThematiqueAdded();
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          const data = await response.json();
+          console.log(data);
+          setModal(false);
+          onSousThematiqueAdded();
+        }
+      } catch (error) {
+        console.error(error);
       }
-
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   return (
@@ -77,9 +73,12 @@ const AddModal = (props) => {
             </FormGroup>
             <FormGroup>
               <Label for="exampleSelect"> Thematique </Label>
-              <Input type="select" id="exampleSelect" value={selectedThematique} onChange={e => setSelectedThematique(e.target.value)}>
+              <Input type="select" id="exampleSelect" value={selectedThematique} onChange={ e => {
+                console.log(e.target.value);
+                setSelectedThematique(e.target.value);  
+              } } >
                 {thematiques.map(thematique => (
-                  <option key={thematique._id} value={thematique._id}>{thematique.nom}</option>
+                  <option key={thematique._id} value={thematique._id+"/"+thematique.nom}>{thematique.nom}</option>
                 ))}
               </Input>
             </FormGroup>
@@ -96,11 +95,10 @@ const AddModal = (props) => {
 
 
 function UpdateModal({ SousThematique, onSousThematiqueUpdated }) {
+
   const [modal, setModal] = useState(false);
   const [nom, setNom] = useState(SousThematique.nom);
-
   const toggle = () => setModal(!modal);
-
   const handleUpdate = async () => {
     try {
       const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${SousThematique._id}`, {
@@ -116,9 +114,8 @@ function UpdateModal({ SousThematique, onSousThematiqueUpdated }) {
         throw new Error(`HTTP error! status: ${response.status}`);
       } else {
         const data = await response.json();
-        console.log(data); 
         setModal(false);
-        onSousThematiqueUpdated(); // appeler la fonction de rappel ici
+        onSousThematiqueUpdated();
       }
     } catch (error) {
       console.error(error);
@@ -152,45 +149,42 @@ function UpdateModal({ SousThematique, onSousThematiqueUpdated }) {
   );
 }
 
-
-
-
 const SousThematiques = () => {
-  const [SousThematiques,setSousThematiques] = useState([]);
-  const getSousThematiques = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  "x-auth-token" : localStorage.getItem("token"),
-                }
-        }).then((response) => response.json()).then((data) => { setSousThematiques(data); }).catch((error) => { console.error(error); })
-  }
-      
-  useEffect(() => {
-    getSousThematiques();
-  },[])
-
-
-  const deleteSousThematique = async (id) => {
-    try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-auth-token' : localStorage.getItem("token"),
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      } else {
-        getSousThematiques();
+      const [SousThematiques,setSousThematiques] = useState([]);
+      const getSousThematiques = async () => {
+            fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique`, {
+                    method: "GET",
+                    headers: {
+                      "Content-Type": "application/json",
+                      "x-auth-token" : localStorage.getItem("token"),
+                    }
+            }).then((response) => response.json()).then((data) => { setSousThematiques(data); }).catch((error) => { console.error(error); })
       }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+
+      useEffect(() => {
+        getSousThematiques();
+      },[])
+
+
+      const deleteSousThematique = async (id) => {
+        try {
+          const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-auth-token' : localStorage.getItem("token"),
+            }
+          });
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          } else {
+            getSousThematiques();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
   
 
         return (
@@ -204,7 +198,7 @@ const SousThematiques = () => {
                   <tr>
                     <th>N </th>
                     <th>Nom </th>
-                   
+                    <th>Thematique </th>
                     <th> </th>
                     <th> </th>
                   </tr>
@@ -214,7 +208,7 @@ const SousThematiques = () => {
                       <tr key={SousThematique._id}>
                         <td>{index + 1}</td>
                         <td>{SousThematique.nom}</td>
-                        
+                        <td>{SousThematique.thematique}</td>
                         <td>
                           <UpdateModal SousThematique={SousThematique} onSousThematiqueUpdated={getSousThematiques} />
                         </td>

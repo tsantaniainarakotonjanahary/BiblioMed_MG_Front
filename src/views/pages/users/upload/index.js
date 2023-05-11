@@ -32,12 +32,53 @@ const ToastContent = ({ t, message }) => {
 
 const UploadPage = () => {
   const [fileUpload, setFileUpload] = useState(null);
-  const [directory, setDirectory] = useState("");
   const hiddenFileInput = useRef(null);
   const [entities,setEntities] = useState([]);
   const [visibilite, setVisibilite] = useState([]);
+  const [thematiques, setThematiques] = useState([]); // NEW: For storing all thematiques
+  const [selectedThematique, setSelectedThematique] = useState(''); // NEW: For storing selected thematique
+  const [sousThematiques, setSousThematiques] = useState([]); // NEW: For storing all sousThematiques
+  const [filteredSousThematiques, setFilteredSousThematiques] = useState([]); // NEW: For storing sousThematiques based on selected thematique
+  const [selectedSousThematique, setSelectedSousThematique] = useState('');
 
-  console.log(visibilite);
+  // NEW: useEffect to fetch thematiques and sousThematiques
+  useEffect(() => {
+    const getThematiques = async () => {
+        fetch(`https://bibliotheque-medical-back.vercel.app/thematique`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token" : localStorage.getItem("token"),
+            }
+        }).then((response) => response.json()).then((data) => { setThematiques(data); }).catch((error) => { console.error(error); })
+    }
+
+    const getSousThematiques = async () => {
+        fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token" : localStorage.getItem("token"),
+            }
+        }).then((response) => response.json()).then((data) => { setSousThematiques(data); }).catch((error) => { console.error(error); })
+    }
+
+    getThematiques();
+    getSousThematiques();
+  }, [])
+
+  useEffect(() => {
+    
+    const filtered = sousThematiques.filter(sousThematique => sousThematique.idThematique === selectedThematique.split("/")[0]);
+    setFilteredSousThematiques(filtered);
+  }, [selectedThematique, sousThematiques]);
+
+
+  const handleSelectThematiqueChange = (event) => {
+    console.log(event.target.value);
+    setSelectedThematique(event.target.value);
+  };
+
 
   useEffect(() => {
       const getEntities = async () => {
@@ -56,35 +97,25 @@ const UploadPage = () => {
   const [description,setDescription] = useState("");
   const [titre,setTitre] = useState("");
 
-
   const handleUploadFile = () => {
     setIsLoadingUpload(true);
     if (fileUpload == null) return;
-    const fileRef = ref(storage, `${directory}/${fileUpload.name + v4()}`);
+    const fileRef = ref(storage, `${fileUpload.name + v4()}`);
     uploadBytes(fileRef, fileUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((fileUrl) => {
         fetch(`https://bibliotheque-medical-back.vercel.app/file`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token" : localStorage.getItem("token"),
-          },
+          headers: { "Content-Type": "application/json", "x-auth-token" : localStorage.getItem("token"), },
           body: JSON.stringify({
-            dossier: directory,
             lien: fileUrl,
             nom: fileUpload.name,
             titre : titre,
             description : description , 
-             visibilite,
-            user: {
-              nom: localStorage.getItem("userData").nom,
-              prenom: localStorage.getItem("userData").prenom,
-              profil: localStorage.getItem("userData").profil,
-              iduser: localStorage.getItem("userData")._id,
-              role: localStorage.getItem("userData").role,
-              entite: localStorage.getItem("userData").entite,
-              idEntite: localStorage.getItem("userData").idEntite,
-            },
+            visibilite,
+            thematique : selectedThematique.split("/")[1] ,
+            idThematique : selectedThematique.split("/")[0],
+            sousThematique : selectedSousThematique.split("/")[1],
+            idSousThematique : selectedSousThematique.split("/")[0]
           }),
         }).then((response) => response.json()).then((data) => { console.log(data);  
           toast(t => (
@@ -103,8 +134,9 @@ const UploadPage = () => {
     setFileUpload(fileUploaded);
   };
 
-  const handleSelectChange = (event) => {
+  const handleSelectSousThematiqueChange = (event) => {
     console.log('Selected option:', event.target.value);
+    setSelectedSousThematique(event.target.value);
   };
 
   const handleCheckboxChange = (event) => {
@@ -117,58 +149,53 @@ const UploadPage = () => {
         setVisibilite(visibilite.filter(id => id !== entityId));
       }
     }
+
+
+    console.log(thematiques);
   
     return (
       <div style={{width : "100%"}}>
 
-    <FormGroup>
-      <Label for="dropdownSelect">Thematique  :</Label>
-      <Input type="select" name="dropdownSelect" id="dropdownSelect" onChange={handleSelectChange}>
-        <option value="">Sélectionnez une Thematique</option>
-        <option value="option1">Document technique</option>
-        <option value="option2">Document stratégique</option>
-        <option value="option3">Résultats des recherches</option>
-        <option value="option3">Autres</option>
-      </Input>
-    </FormGroup>
+          <FormGroup>
+            <Label for="dropdownSelectThematique">Thematique :</Label>
+            <Input type="select" name="dropdownSelectThematique" id="dropdownSelectThematique" onChange={handleSelectThematiqueChange}>
+              <option value="">Sélectionnez une Thematique</option>
+              {thematiques.map(({ _id, nom }) => (
+                <option key={_id} value={_id+"/"+nom}>{nom}</option>
+              ))}
+            </Input>
+          </FormGroup>
 
-    <FormGroup>
-      <Label for="dropdownSelect">Sous-thematique :</Label>
-      <Input type="select" name="dropdownSelect" id="dropdownSelect" onChange={handleSelectChange}>
-        <option value="">Sélectionnez une sous-thematique </option>
-        <option value="option1">Système d’information Sanitaire</option>
-        <option value="option2">surveillance épidémiologique</option>
-        <option value="option3">Médecine traditionnelle</option>
-        <option value="option3">Paludisme</option>
-        <option value="option3">Vaccination</option>
-        <option value="option3">Santé de la mère et de l’enfant</option>
-        <option value="option3">VIH/SIDA</option>
-        <option value="option3">Tuberculose</option>
-        <option value="option3">Autres</option>
-      </Input>
-    </FormGroup>
+          // Updated FormGroup for Sous-thematique
+          <FormGroup>
+            <Label for="dropdownSelectSousThematique">Sous-thematique :</Label>
+            <Input type="select" name="dropdownSelectSousThematique" id="dropdownSelectSousThematique" onChange={handleSelectSousThematiqueChange}>
+              <option value="">Sélectionnez une sous-thematique</option>
+              {filteredSousThematiques.map(({ _id, nom },index) => (
+                <option key={index} value={_id+"/"+nom}>{nom}</option>
+              ))}
+            </Input>
+          </FormGroup>
 
-    <FormGroup>
-      <Label>Visibilite par entite</Label>
-      {entities.map(({ _id, nom }) => (
-        <FormGroup check inline key={_id}>
-          <Label check>
-            <Input
-              type="checkbox"
-              id={_id}
-              value={_id}
-              checked={visibilite.includes(_id)}
-              onChange={handleCheckboxChange}
-            />
-            {nom}
-          </Label>
+        <FormGroup>
+          <Label>Visibilite par entite</Label>
+          {entities.map(({ _id, nom }) => (
+            <FormGroup check inline key={_id}>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  id={_id}
+                  value={_id}
+                  checked={visibilite.includes(_id)}
+                  onChange={handleCheckboxChange}
+                />
+                {nom}
+              </Label>
+            </FormGroup>
+          ))}
         </FormGroup>
-      ))}
-    </FormGroup>
 
-      <div>
-          <DirectoryInputs directory={directory} setDirectory={setDirectory} />
-        </div>
+
 
         <FormGroup>
     <Label for="description">Description</Label>
@@ -191,7 +218,7 @@ const UploadPage = () => {
         <br />
         <br />
         <input type="file" ref={hiddenFileInput} style={{ display: "none" }} onChange={handleChangeUploadedFile} />
-        {fileUpload && directory ? (
+        {fileUpload ? (
           <div>
               <Button
               disabled={isLoadingUpload}

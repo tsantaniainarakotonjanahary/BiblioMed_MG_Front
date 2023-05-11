@@ -20,6 +20,8 @@ const Files = () => {
 
   const [notValidateFile,setNotValidateFile] = useState([]);
   const [action,setAction] = useState(false);
+
+  console.log(notValidateFile);
   /*const [validateFile,setValidateFile] = useState([]);
   const [visibleEntiteNonValidate,setVisibleEntiteNonValidate] = useState([]);
   const [visibleEntiteValidate,setVisibleEntiteValidate] = useState([]); */
@@ -83,7 +85,6 @@ const Files = () => {
           <Table>
             <thead>
               <tr>
-                <th>Repertoire et categorie </th>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Fichier</th>
@@ -96,18 +97,17 @@ const Files = () => {
             <tbody>
               {notValidateFile.map((item,index) => (
                 <tr key={index}>
-                  <td>{item.dossier}</td>
-                  <td>{item.fichier.titre}</td>
-                  <td>{item.fichier.description}</td>
-                  <td>{item.fichier.nom}</td>
-                  <td>{item.fichier.date}</td>
-                  <td>{item.fichier.user.nom}</td>
+                  <td>{item.titre}</td>
+                  <td>{item.description}</td>
+                  <td>{item.nom}</td>
+                  <td>{item.date}</td>
+                  <td>{item.user.nom}</td>
                   <td>
-                    <a href={item.fichier.lien} download> <Button>Voir</Button> </a>
+                    <a href={item.lien} download> <Button>Voir</Button> </a>
                   </td>
                   <td>
                      <Button onClick={() => {
-                        (async () => { fetch(`${BASE_URL}/file/${item._id}/${item.fichier._id}`, {
+                        (async () => { fetch(`${BASE_URL}/file/${item._id}`, {
                               method: 'PUT',
                               headers: { 'Content-Type': 'application/json', 'x-auth-token' : localStorage.getItem("token") }
                           }).then(response => response.json()).then(data => setAction(!action) ).catch(error => console.error(error));
