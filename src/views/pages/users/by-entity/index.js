@@ -32,7 +32,6 @@ const ByEntity = () => {
     'mp4': 'mp4',
     'webm': 'webm',
     'mp3': 'mp3',
-    // Add more if needed
   };
 
   const getTypeFromLink = (link) => {
@@ -52,42 +51,42 @@ const ByEntity = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const getNotValidatedFile = async () => {
+      const getNotValidatedFile = async () => {
       console.log(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`);
-        fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "x-auth-token" : localStorage.getItem("token"),
-            }
-      }).then((response) => response.json()).then((data) => { setNotValidateFile(data); setIsLoading(false);}).catch((error) => { console.error(error); })
-    }
-    getNotValidatedFile();
-},[])
-
-
-    const markAsRead = async (fileId, fileLink, fileType) => {
-      console.log(fileId);
-      try {
-        const response = await fetch(`https://bibliotheque-medical-back.vercel.app/file/read/${fileId}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-auth-token" : localStorage.getItem("token"),
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to mark the file as read');
-        }
-
-        setCurrentFile({ file: fileLink, type: fileType }); // set current file to be viewed
-        setShowModal(true); // show the modal with the FileViewer
-
-      } catch (error) {
-        console.error(error);
+          fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                "x-auth-token" : localStorage.getItem("token"),
+              }
+        }).then((response) => response.json()).then((data) => { setNotValidateFile(data); setIsLoading(false);}).catch((error) => { console.error(error); })
       }
+      getNotValidatedFile();
+  },[])
+
+
+  const markAsRead = async (fileId, fileLink, fileType) => {
+    console.log(fileId);
+    try {
+      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/file/read/${fileId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token" : localStorage.getItem("token"),
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to mark the file as read');
+      }
+
+      setCurrentFile({ file: fileLink, type: fileType }); 
+      setShowModal(true); 
+
+    } catch (error) {
+      console.error(error);
     }
+  }
 
 
   return (
@@ -105,8 +104,6 @@ const ByEntity = () => {
         />
       </Modal.Body>
     </Modal>
-
-
       <Table>
           <thead>
             <tr>
@@ -140,7 +137,6 @@ const ByEntity = () => {
                     <Button onClick={() => markAsRead(item._id, item.lien, getTypeFromLink(item.lien))}>
                       <Eye size={20} />
                     </Button>
-                    
                   </td>
                 </tr>
               ))

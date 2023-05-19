@@ -12,6 +12,7 @@ const ResetPasswordBasic = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
 
     if (newPassword !== confirmPassword) {
@@ -20,9 +21,10 @@ const ResetPasswordBasic = () => {
     }
 
     const token = new URLSearchParams(window.location.search).get('token');
+    console.log(token);
 
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/user/reset-password', {
+      const response = await fetch('http://localhost:4000/user/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,6 +42,7 @@ const ResetPasswordBasic = () => {
         console.log("Successs");
       } else {
         setErrorMessage(data.message);
+        console.log(data.message);
       }
     } catch (error) {
       setErrorMessage('An error occurred');
@@ -93,16 +96,16 @@ const ResetPasswordBasic = () => {
               {successMessage && <p className='text-success mt-2'>{successMessage}</p>}
             </Form>
             <p className='text-center mt-2'>
-<Link to='/pages/login-basic'>
-<ChevronLeft className='rotate-rtl me-25' size={14} />
-<span className='align-middle'>Back to login</span>
-</Link>
-</p>
-</CardBody>
-</Card>
-</div>
-</div>
-);
-};
+              <Link to='/pages/login-basic'>
+              <ChevronLeft className='rotate-rtl me-25' size={14} />
+              <span className='align-middle'>Back to login</span>
+              </Link>
+              </p>
+              </CardBody>
+              </Card>
+              </div>
+              </div>
+              );
+            };
 
 export default ResetPasswordBasic;
