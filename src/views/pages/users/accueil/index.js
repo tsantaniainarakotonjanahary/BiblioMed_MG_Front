@@ -47,7 +47,40 @@ const AnalyticsDashboard = () => {
 
   const searchFields = ['thematique', 'sousThematique', 'nom']
 
+  const getFilteredItems = (value) => {
+    if (!value) {
+      return []
+    }
 
+    return allFiles.filter(file => {
+      return searchFields.some(field => file[field]?.toLowerCase().includes(value.toLowerCase()))
+    })
+  }
+
+  const getFilteredItemsByThematique = (value) => {
+    if (!value) {
+        return []
+    }
+
+    return allFiles.filter(file => file['thematique']?.toLowerCase().includes(value.toLowerCase()))
+}
+
+const getFilteredItemsBySousThematique = (value) => {
+  if (!value) {
+      return []
+  }
+
+  return allFiles.filter(file => file['sousThematique']?.toLowerCase().includes(value.toLowerCase()))
+}
+
+
+const getFilteredItemsByNom = (value) => {
+  if (!value) {
+    return []
+  }
+
+  return allFiles.filter(file => file['nom']?.toLowerCase().includes(value.toLowerCase()))
+}
 
 
 
