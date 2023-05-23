@@ -47,7 +47,6 @@ const ByEntity = () => {
     return fileTypes[extension];
   };
   
-  
 
   useEffect(() => {
     setIsLoading(true);
