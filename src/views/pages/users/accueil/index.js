@@ -47,40 +47,7 @@ const AnalyticsDashboard = () => {
 
   const searchFields = ['thematique', 'sousThematique', 'nom']
 
-  const getFilteredItems = (value) => {
-    if (!value) {
-      return []
-    }
 
-    return allFiles.filter(file => {
-      return searchFields.some(field => file[field]?.toLowerCase().includes(value.toLowerCase()))
-    })
-  }
-
-  const getFilteredItemsByThematique = (value) => {
-    if (!value) {
-        return []
-    }
-
-    return allFiles.filter(file => file['thematique']?.toLowerCase().includes(value.toLowerCase()))
-}
-
-const getFilteredItemsBySousThematique = (value) => {
-  if (!value) {
-      return []
-  }
-
-  return allFiles.filter(file => file['sousThematique']?.toLowerCase().includes(value.toLowerCase()))
-}
-
-
-const getFilteredItemsByNom = (value) => {
-  if (!value) {
-    return []
-  }
-
-  return allFiles.filter(file => file['nom']?.toLowerCase().includes(value.toLowerCase()))
-}
 
 
 
@@ -390,71 +357,7 @@ const getFilteredItemsByNom = (value) => {
   )}
 </Downshift>
 
-<Downshift
-  onChange={selection => console.log('selected item', selection)}
-  itemToString={item => (item ? `${item.titre}` : '')}
->
-  {({
-    getInputProps,
-    getItemProps,
-    getLabelProps,
-    getMenuProps,
-    isOpen,
-    inputValue,
-    highlightedIndex,
-    selectedItem,
-    getRootProps
-  }) => (
-    <div {...getRootProps({}, {suppressRefError: true})}>
-      <Form>
-        <FormGroup>
-          <Label {...getLabelProps()}>Recherche par Titre</Label>
-          <Input {...getInputProps()} />
-        </FormGroup>
-      </Form>
-      <Table {...getMenuProps()}>
-        <thead>
-          <tr>
-            <th>Titre</th>
-            <th>Thematique</th>
-            <th>Sous-Thematique</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isOpen &&
-            getFilteredItemsByTitle(inputValue).map((item, index) => (
-              <tr
-                {...getItemProps({
-                  key: item._id,
-                  index,
-                  item,
-                  style: {
-                    backgroundColor: highlightedIndex === index ? 'lightgray' : 'white',
-                    fontWeight: selectedItem === item ? 'bold' : 'normal',
-                  },
-                })}
-              >
-                <td>
-                  {item.titre}
-                </td>
-                <td>
-                  {item.thematique}
-                </td>
-                <td>
-                  {item.sousThematique}
-                </td>
-                <td>
-                  <Button color="primary" href={item.lien} target="_blank">View</Button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </Table>
-    </div>
-  )}
-</Downshift>
+
 
 
 
