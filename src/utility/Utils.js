@@ -67,6 +67,7 @@ export const getHomeRouteForLoggedInUser = userRole => {
   return '/welcome'
 }
 
+// ** React Select Theme Colors
 export const selectThemeColors = theme => ({
   ...theme,
   colors: {
