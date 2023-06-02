@@ -113,66 +113,16 @@ const Landing = () => {
           </li>
           <li>
             <a className="nav-link scrollto" href="#about">
-              About
+              A propos
             </a>
           </li>
           <li>
             <a className="nav-link scrollto" href="#services">
-              Services
+              Service
             </a>
           </li>
-          <li>
-            <a className="nav-link scrollto " href="#portfolio">
-              Album
-            </a>
-          </li>
-          <li>
-            <a className="nav-link scrollto" href="#team">
-              Team
-            </a>
-          </li>
-          <li className="dropdown">
-            <a href="#">
-              <span>Drop Down</span> <i className="bi bi-chevron-down" />
-            </a>
-            <ul>
-              <li>
-                <a href="#">Drop Down 1</a>
-              </li>
-              <li className="dropdown">
-                <a href="#">
-                  <span>Deep Drop Down</span>{" "}
-                  <i className="bi bi-chevron-right" />
-                </a>
-                <ul>
-                  <li>
-                    <a href="#">Deep Drop Down 1</a>
-                  </li>
-                  <li>
-                    <a href="#">Deep Drop Down 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Deep Drop Down 3</a>
-                  </li>
-                  <li>
-                    <a href="#">Deep Drop Down 4</a>
-                  </li>
-                  <li>
-                    <a href="#">Deep Drop Down 5</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#">Drop Down 2</a>
-              </li>
-              <li>
-                <a href="#">Drop Down 3</a>
-              </li>
-              <li>
-                <a href="#">Drop Down 4</a>
-              </li>
-            </ul>
-          </li>
+          
+          
           <li>
             <a className="nav-link scrollto" href="#contact">
               Contact
@@ -367,47 +317,43 @@ const Landing = () => {
     {/* End About Section */}
     {/* ======= Counts Section ======= */}
     <section id="counts" className="counts">
-      <div className="container">
-        <div className="row counters">
-          <div className="col-lg-3 col-6 text-center">
-            <span
-              data-purecounter-start={0}
-              data-purecounter-end={232}
-              data-purecounter-duration={1}
-              className="purecounter"
-            />
-            <p>Clients</p>
-          </div>
-          <div className="col-lg-3 col-6 text-center">
-            <span
-              data-purecounter-start={0}
-              data-purecounter-end={521}
-              data-purecounter-duration={1}
-              className="purecounter"
-            />
-            <p>Projects</p>
-          </div>
-          <div className="col-lg-3 col-6 text-center">
-            <span
-              data-purecounter-start={0}
-              data-purecounter-end={1463}
-              data-purecounter-duration={1}
-              className="purecounter"
-            />
-            <p>Hours Of Support</p>
-          </div>
-          <div className="col-lg-3 col-6 text-center">
-            <span
-              data-purecounter-start={0}
-              data-purecounter-end={15}
-              data-purecounter-duration={1}
-              className="purecounter"
-            />
-            <p>Hard Workers</p>
-          </div>
-        </div>
+  <div className="container">
+    <div className="row counters">
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={99} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des documents répertoriés</p>
       </div>
-    </section>
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={18} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des thèmes traités</p>
+      </div>
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={50} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des sujets traités</p>
+      </div>
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={26} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des promoteurs répertoriés</p>
+      </div>
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={67} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des sources de financement répertoriées</p>
+      </div>
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={136} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des investigateurs principaux répertoriés</p>
+      </div>
+      <div className="col-lg-4 col-6 text-center">
+        <span data-purecounter-start={0} data-purecounter-end={111} data-purecounter-duration={1} className="purecounter" />
+        <p>Nombre des responsables scientifiques répertoriés</p>
+      </div>
+      <div className="col-lg-4 col-6 text-center">
+        <span className="text">Logiciel de traitement des données utilisé: SPSS 20.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
    
     <section id="services" className="services section-bg">
       <div className="container" data-aos="fade-up">
@@ -637,10 +583,21 @@ Rapport d’enquête sur les comptes Nationaux de Santé
         <div className="section-title">
           <h2>Features</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
-            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
-            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-            fugiat sit in iste officiis commodi quidem hic quas.
+          NOMBRE DES DOCUMENTS REPERTORIÉS: 99
+
+NOMBRE DES THÈMES TRAITÉS : 18
+
+NOMBRE DES SUJETS TRAITÉS : 50
+
+NOMBRE DES PROMOTEURS REPERTORIÉS : 26
+
+NOMBRE DES SOURCES DE FINANCEMENT REPERTORIÉES : 67
+
+NOMBRE DES INVESTIGATEURS PRINCIPAUX REPERTORIÉS : 136
+
+NOMBRE DES RESPONSABLES SCIENTIFIQUES REPERTORIÉS : 111
+
+LOGICIEL DE TRAITEMENT DES DONNÉES UTILISÉ: SPSS 20.0
           </p>
         </div>
         <div className="row">
@@ -709,12 +666,22 @@ Rapport d’enquête sur les comptes Nationaux de Santé
     <section id="testimonials" className="testimonials section-bg">
       <div className="container" data-aos="fade-up">
         <div className="section-title">
-          <h2>Testimonials</h2>
+          <h2>Autres institutions publiques de recherche:</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
-            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
-            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-            fugiat sit in iste officiis commodi quidem hic quas.
+          
+
+- Centre National de Recherche sur l’Environnement;
+
+- Institut National des Sciences et Technologies Nucléaires;
+
+- Centre National de Recherche Océanographie.
+
+Faculté de médecine (Antananarivo, Mahajanga, Toliara,
+Toamasina, Antsiranana , Fianarantsoa)
+
+Laboratoires: Labo IPM, Labo Rodolphe Mérieux, LAMM;
+
+Comptes de la Santé (CS) 2010.
           </p>
         </div>
         <div
@@ -1372,7 +1339,7 @@ Rapport d’enquête sur les comptes Nationaux de Santé
                 <i className="bx bx-chevron-right" /> <a href="#">Home</a>
               </li>
               <li>
-                <i className="bx bx-chevron-right" /> <a href="#">About us</a>
+                <i className="bx bx-chevron-right" /> <a href="#">A propos</a>
               </li>
               <li>
                 <i className="bx bx-chevron-right" /> <a href="#">Services</a>
