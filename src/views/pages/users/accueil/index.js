@@ -47,32 +47,6 @@ const AnalyticsDashboard = () => {
 
   const searchFields = ['thematique', 'sousThematique', 'nom']
 
-  const getFilteredItems = (value) => {
-    if (!value) {
-      return []
-    }
-
-    return allFiles.filter(file => {
-      return searchFields.some(field => file[field]?.toLowerCase().includes(value.toLowerCase()))
-    })
-  }
-
-  const getFilteredItemsByThematique = (value) => {
-    if (!value) {
-        return []
-    }
-
-    return allFiles.filter(file => file['thematique']?.toLowerCase().includes(value.toLowerCase()))
-}
-
-const getFilteredItemsBySousThematique = (value) => {
-  if (!value) {
-      return []
-  }
-
-  return allFiles.filter(file => file['sousThematique']?.toLowerCase().includes(value.toLowerCase()))
-}
-
 
 const getFilteredItemsByNom = (value) => {
   if (!value) {
@@ -122,212 +96,9 @@ const getFilteredItemsByNom = (value) => {
         <Card>
             <CardBody>
               <CardTitle tag='h5'>Recherche</CardTitle>
-              <Downshift
-          onChange={selection => console.log('selected item', selection)}
-          itemToString={item => (item ? `${item.nom} - ${item.thematique} - ${item.sousThematique}` : '')}
-        >
-          {({
-            getInputProps,
-            getItemProps,
-            getLabelProps,
-            getMenuProps,
-            isOpen,
-            inputValue,
-            highlightedIndex,
-            selectedItem,
-            getRootProps
-          }) => (
-            <div {...getRootProps({}, {suppressRefError: true})}>
-              <Form>
-                <FormGroup>
-                  <Label {...getLabelProps()}>Recherche generale</Label>
-                  <Input {...getInputProps()} />
-                </FormGroup>
-              </Form>
-              <Table {...getMenuProps()}>
-                <thead>
-                  <tr>
-                    <th>Nom</th>
-                    <th>Thematique</th>
-                    <th>Sous-Thematique</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {isOpen &&
-                    getFilteredItems(inputValue).map((item, index) => (
-                      <tr
-                        {...getItemProps({
-                          key: item._id,
-                          index,
-                          item,
-                          style: {
-                            backgroundColor: highlightedIndex === index ? 'lightgray' : 'white',
-                            fontWeight: selectedItem === item ? 'bold' : 'normal',
-                          },
-                        })}
-                      >
-                        <td>
-                          {item.nom}
-                        </td>
-                        <td>
-                          {item.thematique}
-                        </td>
-                        <td>
-                          {item.sousThematique}
-                        </td>
-                        <td>
-                          <Button color="primary" href={item.lien} target="_blank">View</Button>
-                        </td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </Table>
 
 
-            </div>
-          )}
-        </Downshift>
-
-        <Downshift
-  onChange={selection => console.log('selected item', selection)}
-  itemToString={item => (item ? `${item.thematique}` : '')}
->
-  {({
-    getInputProps,
-    getItemProps,
-    getLabelProps,
-    getMenuProps,
-    isOpen,
-    inputValue,
-    highlightedIndex,
-    selectedItem,
-    getRootProps
-  }) => (
-    <div {...getRootProps({}, {suppressRefError: true})}>
-      <Form>
-        <FormGroup>
-          <Label {...getLabelProps()}>Recherche par Thematique</Label>
-          <Input {...getInputProps()} />
-        </FormGroup>
-      </Form>
-      <Table {...getMenuProps()}>
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Thematique</th>
-            <th>Sous-Thematique</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isOpen &&
-            getFilteredItemsByThematique(inputValue).map((item, index) => (
-              <tr
-                {...getItemProps({
-                  key: item._id,
-                  index,
-                  item,
-                  style: {
-                    backgroundColor: highlightedIndex === index ? 'lightgray' : 'white',
-                    fontWeight: selectedItem === item ? 'bold' : 'normal',
-                  },
-                })}
-              >
-                <td>
-                  {item.nom}
-                </td>
-                <td>
-                  {item.thematique}
-                </td>
-                <td>
-                  {item.sousThematique}
-                </td>
-                <td>
-                  <Button color="primary" href={item.lien} target="_blank">View</Button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </Table>
-    </div>
-  )}
-</Downshift>
-
-
-<Downshift
-  onChange={selection => console.log('selected item', selection)}
-  itemToString={item => (item ? `${item.sousThematique}` : '')}
->
-  {({
-    getInputProps,
-    getItemProps,
-    getLabelProps,
-    getMenuProps,
-    isOpen,
-    inputValue,
-    highlightedIndex,
-    selectedItem,
-    getRootProps
-  }) => (
-    <div {...getRootProps({}, {suppressRefError: true})}>
-      <Form>
-        <FormGroup>
-          <Label {...getLabelProps()}>Recherche par Sous-Thematique</Label>
-          <Input {...getInputProps()} />
-        </FormGroup>
-      </Form>
-      <Table {...getMenuProps()}>
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Thematique</th>
-            <th>Sous-Thematique</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isOpen &&
-            getFilteredItemsBySousThematique(inputValue).map((item, index) => (
-              <tr
-                {...getItemProps({
-                  key: item._id,
-                  index,
-                  item,
-                  style: {
-                    backgroundColor: highlightedIndex === index ? 'lightgray' : 'white',
-                    fontWeight: selectedItem === item ? 'bold' : 'normal',
-                  },
-                })}
-              >
-                <td>
-                  {item.nom}
-                </td>
-                <td>
-                  {item.thematique}
-                </td>
-                <td>
-                  {item.sousThematique}
-                </td>
-                <td>
-                  <Button color="primary" href={item.lien} target="_blank">View</Button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </Table>
-    </div>
-  )}
-</Downshift>
-
-
-<Downshift
-  onChange={selection => console.log('selected item', selection)}
-  itemToString={item => (item ? `${item.nom}` : '')}
->
+              <Downshift onChange={selection => console.log('selected item', selection)} itemToString={item => (item ? `${item.nom}` : '')} >
   {({
     getInputProps,
     getItemProps,
@@ -346,7 +117,7 @@ const getFilteredItemsByNom = (value) => {
           <Input {...getInputProps()} />
         </FormGroup>
       </Form>
-      <Table {...getMenuProps()}>
+      <Table {...getMenuProps({ refKey: '' })}>
         <thead>
           <tr>
             <th>Nom</th>
@@ -389,10 +160,6 @@ const getFilteredItemsByNom = (value) => {
     </div>
   )}
 </Downshift>
-
-
-
-
 
             </CardBody>
           </Card>
