@@ -195,26 +195,23 @@ const Landing = () => {
     <div className="container-fluid" data-aos="fade-up">
       <div className="row justify-content-center">
       <div className="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-  <h1>Explorez l'univers du savoir avec Bibliomed</h1>
-  <h2>
-    Votre plateforme numérique sanitaire pour accéder facilement à une vaste collection de ressources médicales
-  </h2>
-  <div>
-    <a href="#about" className="btn-get-started scrollto">
-      Commencer
-    </a>
-  </div>
-</div>
+        <h1>Découvrez Bibliomed, votre bibliothèque numérique sanitaire pour Madagascar</h1>
+        <h2>
+          Accédez facilement à une vaste collection de documents sanitaires, optimisez la gestion et l'utilisation des données, et améliorez la planification et la mise en œuvre des interventions en santé.
+        </h2>
+        <div>
+          <a href="#about" className="btn-get-started scrollto">
+            Commencer
+          </a>
+        </div>
+      </div>
+
         <div
           className="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img"
           data-aos="zoom-in"
           data-aos-delay={150}
         >
-          <img
-            src={heroImg}
-            className="img-fluid animated"
-            alt=""
-          />
+          
         </div>
       </div>
     </div>
@@ -256,24 +253,41 @@ const Landing = () => {
             className="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content"
             data-aos="fade-right"
           >
-            <h3>Partagez et téléchargez des fichiers en toute simplicité</h3>
-<p className="fst-italic">
-  Notre plateforme vous permet de partager et télécharger des fichiers publics de manière sécurisée et efficace.
-</p>
-<ul>
-  <li>
-    <i className="bi bi-check-circle" /> Téléchargez des fichiers publics en un clic.
-  </li>
-  <li>
-    <i className="bi bi-check-circle" /> Partagez vos fichiers avec d'autres utilisateurs en toute sécurité.
-  </li>
-  <li>
-    <i className="bi bi-check-circle" /> Gérez facilement vos fichiers et contrôlez l'accès grâce à nos outils intuitifs.
-  </li>
-</ul>
-<a href="#" className="read-more">
-  En savoir plus <i className="bi bi-long-arrow-right" />
-</a>
+            <h3>Contribuez à la recherche en santé à Madagascar</h3>
+
+                <p className="fst-italic">
+                  Notre plateforme sert à mettre en œuvre la politique de recherche dans les domaines de la santé, permettant de produire annuellement les Comptes Nationaux de Santé et de promouvoir les systèmes nationaux de gestion des connaissances.
+                </p>
+
+                <ul>
+                  <li>
+                    <i className="bi bi-check-circle" /> Assurez la mise en œuvre de la recherche opérationnelle.
+                  </li>
+                  <li>
+                    <i className="bi bi-check-circle" /> Garantissez la production annuelle des Comptes Nationaux de Santé.
+                  </li>
+                  <li>
+                    <i className="bi bi-check-circle" /> Déterminez les systèmes nationaux de gestion des connaissances.
+                  </li>
+                </ul>
+
+                <h4>Résultats Attendus :</h4>
+                <ul>
+                  <li>
+                    <i className="bi bi-check-circle" /> Mise en œuvre de la Recherche opérationnelle assurée.
+                  </li>
+                  <li>
+                    <i className="bi bi-check-circle" /> Production annuelle des Comptes Nationaux de Santé garantie.
+                  </li>
+                  <li>
+                    <i className="bi bi-check-circle" /> Systèmes Nationaux de Gestion des connaissances déterminées.
+                  </li>
+                </ul>
+
+                <a href="#" className="read-more">
+                  En savoir plus <i className="bi bi-long-arrow-right" />
+                </a>
+
           </div>
         </div>
       </div>
@@ -394,17 +408,15 @@ const Landing = () => {
         </div>
       </div>
     </section>
-    {/* End Counts Section */}
-    {/* ======= Services Section ======= */}
+   
     <section id="services" className="services section-bg">
       <div className="container" data-aos="fade-up">
         <div className="section-title">
-          <h2>Services</h2>
+          <h2>1. Liste des Missions:</h2>
           <p>
-            Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex
-            aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos
-            quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-            fugiat sit in iste officiis commodi quidem hic quas.
+          Contribuer à la mise en œuvre de la politique de la recherche dans les domaines de la santé à Madagascar
+Assurer la production annuellement des Comptes Nationaux de santé
+Promouvoir les systèmes nationaux de gestion des connaissances
           </p>
         </div>
         <div className="row gy-4">
@@ -431,11 +443,13 @@ const Landing = () => {
                 <i className="bx bxl-dribbble" />
               </div>
               <h4>
-                <a href="">Lorem Ipsum</a>
+                <a href="">Liste des Objectifs Globaux et Spécifiques:</a>
               </h4>
               <p>
-                Voluptatum deleniti atque corrupti quos dolores et quas
-                molestias excepturi
+              Disposer chaque année le document des comptes nationaux de santé et le produit de l’exploitation des recherches en santé pour une prise de décisions
+Assurer la mise en œuvre de la recherche opérationnelle
+Garantir la production annuelle des Comptes Nationaux de Santé
+Déterminer les systèmes nationaux de gestion connaissances
               </p>
             </div>
           </div>
@@ -462,11 +476,12 @@ const Landing = () => {
                 <i className="bx bx-file" />
               </div>
               <h4>
-                <a href="">Sed Perspiciatis</a>
+                <a href="">Liste des Résultats Attendus:</a>
               </h4>
               <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore
+              Mise en œuvre de la Recherche opérationnelle assurée
+Production annuelle des Comptes Nationaux de Santé garantie
+Systèmes Nationaux de Gestion des connaissances déterminées
               </p>
             </div>
           </div>
@@ -493,11 +508,23 @@ const Landing = () => {
                 <i className="bx bx-tachometer" />
               </div>
               <h4>
-                <a href="">Magni Dolores</a>
+                <a href=""> Liste des Attributions:</a>
               </h4>
               <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia
+              Mettre en œuvre la politique nationale de recherche en matière de santé
+Contribuer à la mise en œuvre du Plan Stratégique de Recherche en santé
+Créer les pools de formateurs en méthodologie de recherche opérationnelle
+Mettre en place les bases de données de la recherche en santé
+Elaborer le Plan de Travail Annuel du service
+Disposer annuellement les Comptes Nationaux de Santé
+Assurer le rapport d’enquête CNS
+Former les responsables régionales sur la recherche en santé en vue de la mise en place de la culture de recherche à tous les niveaux
+Participer à des ateliers ou réunions relatives au renforcement de capacités, organisées par les directions ou services centraux ou les partenaires
+Former les responsables régionaux en matière de gestion des connaissances
+Former les responsables régionaux et districts en matière de méthodologie de recherche opérationnelle
+Identifier les thèmes de recherche en santé
+Elaborer l’annuaire statistique de recherche en santé
+Former les responsables sur le développement managérial du système de santé
               </p>
             </div>
           </div>
@@ -524,11 +551,15 @@ const Landing = () => {
                 <i className="bx bx-layer" />
               </div>
               <h4>
-                <a href="">Nemo Enim</a>
+                <a href="">Liste des Produits Livrables:</a>
               </h4>
               <p>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                blanditiis
+              Politique Nationale de Recherche pour la Santé
+Plan stratégique de développement sur la recherche en santé
+Thème de recherche prioritaire
+Annuaire statistique de recherche en santé
+Base de données de gestion des connaissances
+Rapport d’enquête sur les comptes Nationaux de Santé
               </p>
             </div>
           </div>
@@ -555,11 +586,13 @@ const Landing = () => {
                 <i className="bx bx-slideshow" />
               </div>
               <h4>
-                <a href="">Dele Cardo</a>
+                <a href="">Liste des Outils de Gestion:</a>
               </h4>
               <p>
-                Quis consequatur saepe eligendi voluptatem consequatur dolor
-                consequuntur
+              Plan de Travail Annuel du service
+Annuaire statistique de recherche en santé
+Base de données de gestion des connaissances
+Rapport d’enquête sur les comptes Nationaux de Santé
               </p>
             </div>
           </div>
