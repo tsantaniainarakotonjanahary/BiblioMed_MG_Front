@@ -74,7 +74,7 @@ const Register = () => {
     getEntities();
   },[])
 
-  const [entite,setEntite] = useState("");
+  const [entity,setEntity] = useState("");
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdownOpenType, setDropdownOpenType] = useState(false);
@@ -100,10 +100,10 @@ const Register = () => {
           nom: data.nom,
           prenom: data.prenom,
           fonction: data.fonction,
-          entite: entite.nom,
+          entite: entity.nom,
           numero: data.numero,
           adresse: data.adresse,
-          idEntite: entite.id
+          idEntite: entity.id
         })
       });
       const result = await response.json();
@@ -216,11 +216,11 @@ const Register = () => {
 
               <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle caret>
-                {entite.nom ? entite.nom : "Selectioner une entite" }
+                {entity.nom ? entity.nom : "Selectioner une entite" }
                 </DropdownToggle>
                 <DropdownMenu>
                   {entities.map((entite,index) => (
-                    <DropdownItem key={index} value={entite.id} onClick={() => setEntite({nom : entite.nom,id : entite.id })}>
+                    <DropdownItem key={index} value={entite._id} onClick={() => setEntity({nom : entite.nom,id : entite._id })}>
                       {entite.nom}
                     </DropdownItem>
                   ))}
