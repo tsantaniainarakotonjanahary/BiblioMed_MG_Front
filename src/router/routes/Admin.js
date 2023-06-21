@@ -5,6 +5,7 @@ const Entities = lazy(() => import('../../views/pages/admin/entities'))
 const Files = lazy(() => import('../../views/pages/admin/files'))
 const Upload = lazy(() => import('../../views/pages/admin/upload'))
 const Valid = lazy(() => import('../../views/pages/admin/valid'))
+const PendingUsers = lazy(() => import('../../views/pages/admin/pending-users')) 
 const Users = lazy(() => import('../../views/pages/admin/users')) 
 
 const AdminRoutes = [
@@ -51,6 +52,14 @@ const AdminRoutes = [
   {
     path: '/admin/valid',
     element: <Valid />,
+    meta: {
+      action: 'manage',
+      resource: 'for-admin'
+    }
+  },
+  {
+    path: '/admin/pending-users',
+    element: <PendingUsers />,
     meta: {
       action: 'manage',
       resource: 'for-admin'

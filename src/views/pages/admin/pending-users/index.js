@@ -8,7 +8,7 @@ const Valid = () => {
 
   useEffect(() => {
     ( async () => {
-      fetch(`${BASE_URL}/user`, {
+      fetch(`${BASE_URL}/user/pending`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       }).then(response => response.json()).then(data => setUsers(data)).catch(error => console.error(error));
@@ -29,6 +29,8 @@ const Valid = () => {
                 <th>Email</th>
                 <th>Numero Tel</th>
                 <th>Adresse</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -41,7 +43,21 @@ const Valid = () => {
                   <td>{item.email}</td>
                   <td>{item.numero}</td>
                   <td>{item.adresse}</td>
-                  
+                  <td>
+                   <Button  onClick={() => {( 
+                    async () => { fetch(`${BASE_URL}/user/validate/${item._id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json', 'x-auth-token' : localStorage.getItem("token") }
+                      }).then(response => response.json()).then(data => console.log(data)).catch(error => console.error(error));
+                    }) ();
+
+                    setAction(!action);
+                   }} > Valider </Button>
+                
+                  </td>
+                  <td>
+                   < Button onClick={() => { setAction(!action); }} > Refuser </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>

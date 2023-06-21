@@ -169,6 +169,78 @@ const Landing = () => {
   {/* End Hero */}
   <main id="main">
 
+
+    
+  <section id="consulter" className="about">
+      <div className="container">
+        <div className="row">
+          <div
+            className="col-lg-12 order-1 order-lg-2"
+            data-aos="zoom-in"
+            data-aos-delay={150}
+          >
+           
+
+           
+        <Card>
+            <CardBody>
+              <CardTitle tag='h5'>Recherche</CardTitle>
+              <Downshift
+          onChange={selection => console.log('selected item', selection)}
+          itemToString={item => (item ? `${item.nom} - ${item.thematique} - ${item.sousThematique}` : '')}
+        >
+          {({
+            getInputProps,
+            getItemProps,
+            getLabelProps,
+            getMenuProps,
+            isOpen,
+            inputValue,
+            highlightedIndex,
+            selectedItem,
+            getRootProps
+          }) => (
+            <div {...getRootProps({}, {suppressRefError: true})}>
+              <Form>
+                <FormGroup>
+                  <Label {...getLabelProps()}>Thematique ou Sous-Thematique ou Nom de fichier</Label>
+                  <Input {...getInputProps()} />
+                </FormGroup>
+              </Form>
+              <ul {...getMenuProps()}>
+                {isOpen &&
+                  getFilteredItems(inputValue).map((item, index) => (
+                    <li
+                      {...getItemProps({
+                        key: item._id,
+                        index,
+                        item,
+                        style: {
+                          backgroundColor:
+                            highlightedIndex === index ? 'lightgray' : 'white',
+                          fontWeight: selectedItem === item ? 'bold' : 'normal',
+                        },
+                      })}
+                    >
+                      {item.nom} - {item.thematique} - {item.sousThematique}
+                      <Button color="primary" href={item.lien} target="_blank">View</Button>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          )}
+        </Downshift>
+            </CardBody>
+          </Card>
+       
+
+          </div>
+         
+        </div>
+      </div>
+    </section>
+    
+    
   <section id="consulter" className="about">
       <div className="container">
         <div className="row">
@@ -244,76 +316,6 @@ const Landing = () => {
     </section>
 
 
-    
-  <section id="consulter" className="about">
-      <div className="container">
-        <div className="row">
-          <div
-            className="col-lg-12 order-1 order-lg-2"
-            data-aos="zoom-in"
-            data-aos-delay={150}
-          >
-           
-
-           
-        <Card>
-            <CardBody>
-              <CardTitle tag='h5'>Recherche</CardTitle>
-              <Downshift
-          onChange={selection => console.log('selected item', selection)}
-          itemToString={item => (item ? `${item.nom} - ${item.thematique} - ${item.sousThematique}` : '')}
-        >
-          {({
-            getInputProps,
-            getItemProps,
-            getLabelProps,
-            getMenuProps,
-            isOpen,
-            inputValue,
-            highlightedIndex,
-            selectedItem,
-            getRootProps
-          }) => (
-            <div {...getRootProps({}, {suppressRefError: true})}>
-              <Form>
-                <FormGroup>
-                  <Label {...getLabelProps()}>Thematique ou Sous-Thematique ou Nom de fichier</Label>
-                  <Input {...getInputProps()} />
-                </FormGroup>
-              </Form>
-              <ul {...getMenuProps()}>
-                {isOpen &&
-                  getFilteredItems(inputValue).map((item, index) => (
-                    <li
-                      {...getItemProps({
-                        key: item._id,
-                        index,
-                        item,
-                        style: {
-                          backgroundColor:
-                            highlightedIndex === index ? 'lightgray' : 'white',
-                          fontWeight: selectedItem === item ? 'bold' : 'normal',
-                        },
-                      })}
-                    >
-                      {item.nom} - {item.thematique} - {item.sousThematique}
-                      <Button color="primary" href={item.lien} target="_blank">View</Button>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          )}
-        </Downshift>
-            </CardBody>
-          </Card>
-       
-
-          </div>
-         
-        </div>
-      </div>
-    </section>
-    
     {/* End About Section */}
     {/* ======= Counts Section ======= */}
     <section id="counts" className="counts">

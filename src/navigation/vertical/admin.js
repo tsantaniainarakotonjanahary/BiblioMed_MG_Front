@@ -7,7 +7,7 @@ export default [
   },
   {
     id: 'admin-upload',
-    title: 'Upload File',
+    title: 'uploader fichier',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-admin',
@@ -15,7 +15,7 @@ export default [
   },
   {
     id: 'pending-file',
-    title: 'files to validate',
+    title: 'Fichier à valider',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-admin',
@@ -46,8 +46,16 @@ export default [
     navLink: '/admin/sousThematique'
   },
   {
+    id: 'admin-pending-users',
+    title: 'Valider utilisateur',
+    icon: <Shield size={12} />,
+    action: 'manage',
+    resource: 'for-admin',
+    navLink: '/admin/pending-users'
+  },
+  {
     id: 'admin-users',
-    title: 'Validate user',
+    title: 'Utilisateurs',
     icon: <Shield size={12} />,
     action: 'manage',
     resource: 'for-admin',
