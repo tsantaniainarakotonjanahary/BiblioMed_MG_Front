@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState , useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useSkin } from '@hooks/useSkin'
@@ -59,12 +59,20 @@ const Register = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [entities,setEntities] = useState([
-    {id:"jdi",nom: "PMM"},
-    {id:"jdiKD",nom: "USAID"},
-    {id:"jdiKDD",nom: "DEPSI"},
-    {id:"jdiKDGG",nom: "DPEV"},
-  ]);
+  const [entities,setEntities] = useState([]);
+  const getEntities = async () => {
+        fetch(`https://bibliotheque-medical-back.vercel.app/entite`, {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                  "x-auth-token" : localStorage.getItem("token"),
+                }
+        }).then((response) => response.json()).then((data) => { setEntities(data); }).catch((error) => { console.error(error); })
+  }
+      
+  useEffect(() => {
+    getEntities();
+  },[])
 
   const [entite,setEntite] = useState("");
 
@@ -211,8 +219,8 @@ const Register = () => {
                 {entite.nom ? entite.nom : "Selectioner une entite" }
                 </DropdownToggle>
                 <DropdownMenu>
-                  {entities.map((entite) => (
-                    <DropdownItem key={entite.id} value={entite.id} onClick={() => setEntite({nom : entite.nom,id : entite.id })}>
+                  {entities.map((entite,index) => (
+                    <DropdownItem key={index} value={entite.id} onClick={() => setEntite({nom : entite.nom,id : entite.id })}>
                       {entite.nom}
                     </DropdownItem>
                   ))}
