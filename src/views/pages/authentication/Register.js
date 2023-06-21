@@ -66,11 +66,12 @@ const Register = () => {
     {id:"jdiKDGG",nom: "DPEV"},
   ]);
 
-
   const [entite,setEntite] = useState("");
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpenType, setDropdownOpenType] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleDropdownType = () => setDropdownOpenType(!dropdownOpenType);
   const ability = useContext(AbilityContext)
   const { control, setError, handleSubmit, formState: { errors } } = useForm({ defaultValues })
   const source = skin === 'dark' ? illustrationsDark : illustrationsLight
@@ -223,9 +224,9 @@ const Register = () => {
 
               <br></br>
 
-              <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+              <Dropdown isOpen={dropdownOpenType} toggle={toggleDropdownType}>
                 <DropdownToggle caret>
-                {entite.nom ? entite.nom : "Selectioner type de compte " }
+                {"Selectioner type de compte " }
                 </DropdownToggle>
                 <DropdownMenu>
                   
