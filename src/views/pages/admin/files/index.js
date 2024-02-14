@@ -29,7 +29,7 @@ const Files = () => {
   }, [])
 
 const getThematiques = async () => {
-  fetch(`https://bibliotheque-medical-back.vercel.app/thematique`, {
+  fetch(`http://localhost:4000/thematique`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const getThematiques = async () => {
 }
 
 const getSousThematiques = async () => {
-  fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique`, {
+  fetch(`http://localhost:4000/sousThematique`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -63,7 +63,7 @@ const getSousThematiques = async () => {
 }
 
 const getEntities = async () => {
-  fetch(`https://bibliotheque-medical-back.vercel.app/entite`, {
+  fetch(`http://localhost:4000/entite`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -111,7 +111,7 @@ const handleSelectSousThematiqueChange = (event) => {
 
   
   const getNotValidatedFile = async () => {
-    fetch(`https://bibliotheque-medical-back.vercel.app/file/non-valides`, {
+    fetch(`http://localhost:4000/file/non-valides`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

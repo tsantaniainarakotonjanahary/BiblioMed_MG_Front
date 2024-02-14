@@ -88,7 +88,7 @@ const Login = () => {
     if (Object.values(data).every(field => field.length > 0)) {
 
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/user/login', {
+      const response = await fetch('http://localhost:4000/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

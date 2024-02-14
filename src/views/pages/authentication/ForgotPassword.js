@@ -32,7 +32,7 @@ const isUserLoggedIn = () => {
 
     setLoading(true);
 
-    fetch('https://bibliotheque-medical-back.vercel.app/user/forgot-password', {
+    fetch('http://localhost:4000/user/forgot-password', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

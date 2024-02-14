@@ -17,7 +17,7 @@ const Public = () => {
   useEffect(() => {
     setIsLoading(true);
     const getValidatedFile = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-user`, {
+        fetch(`http://localhost:4000/file/valides-par-user`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

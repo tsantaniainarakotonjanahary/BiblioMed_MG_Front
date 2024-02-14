@@ -56,8 +56,6 @@ import '@src/assets/vendor/isotope-layout/isotope.pkgd.min.js';
 import '@src/assets/vendor/swiper/swiper-bundle.min.js';
 import '@src/assets/js/main.js';
 
-// ** Service Worker
-import * as serviceWorker from './serviceWorker';
 
 const LazyApp = lazy(() => import('./App'));
 
@@ -79,4 +77,3 @@ root.render(
   </BrowserRouter>
 );
 
-serviceWorker.unregister();

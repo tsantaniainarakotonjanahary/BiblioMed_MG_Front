@@ -24,7 +24,7 @@ const ResetPasswordBasic = () => {
     console.log(token);
 
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/user/reset-password', {
+      const response = await fetch('http://localhost:4000/user/reset-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

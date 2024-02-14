@@ -16,7 +16,7 @@ const Pending = () => {
   useEffect(() => {
     setIsLoading(true);
     const getNotValidatedFile = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/file/non-valides-par-user`, {
+        fetch(`http://localhost:4000/file/non-valides-par-user`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

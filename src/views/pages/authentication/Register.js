@@ -61,7 +61,7 @@ const Register = () => {
 
   const [entities,setEntities] = useState([]);
   const getEntities = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/entite`, {
+        fetch(`http://localhost:4000/entite`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const Register = () => {
 
       
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/user/register', {
+      const response = await fetch('http://localhost:4000/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

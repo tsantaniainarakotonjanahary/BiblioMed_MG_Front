@@ -17,7 +17,7 @@ const AddModal = (props) => {
   useEffect(() => {
     const fetchThematiques = async () => {
       try {
-        const response = await fetch('https://bibliotheque-medical-back.vercel.app/thematique', {
+        const response = await fetch('http://localhost:4000/thematique', {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
         });
@@ -39,7 +39,7 @@ const AddModal = (props) => {
 
   const handleSubmit = async () => {
       try {
-        const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${selectedThematique.split("/")[0]}`, {
+        const response = await fetch(`http://localhost:4000/sousThematique/${selectedThematique.split("/")[0]}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ function UpdateModal({ SousThematique, onSousThematiqueUpdated }) {
   const toggle = () => setModal(!modal);
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${SousThematique._id}`, {
+      const response = await fetch(`http://localhost:4000/sousThematique/${SousThematique._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ function UpdateModal({ SousThematique, onSousThematiqueUpdated }) {
 const SousThematiques = () => {
       const [SousThematiques,setSousThematiques] = useState([]);
       const getSousThematiques = async () => {
-            fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique`, {
+            fetch(`http://localhost:4000/sousThematique`, {
                     method: "GET",
                     headers: {
                       "Content-Type": "application/json",
@@ -168,7 +168,7 @@ const SousThematiques = () => {
 
       const deleteSousThematique = async (id) => {
         try {
-          const response = await fetch(`https://bibliotheque-medical-back.vercel.app/sousThematique/${id}`, {
+          const response = await fetch(`http://localhost:4000/sousThematique/${id}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

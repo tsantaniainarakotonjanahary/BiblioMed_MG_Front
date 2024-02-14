@@ -14,7 +14,7 @@ const AddModal = (props) => {
   const toggle = () => setModal(!modal);
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/entite', {
+      const response = await fetch('http://localhost:4000/entite', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ function UpdateModal({ entity, onEntityUpdated }) {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/entite/${entity._id}`, {
+      const response = await fetch(`http://localhost:4000/entite/${entity._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ function UpdateModal({ entity, onEntityUpdated }) {
 const Entities = () => {
   const [entities,setEntities] = useState([]);
   const getEntities = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/entite`, {
+        fetch(`http://localhost:4000/entite`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -145,7 +145,7 @@ const Entities = () => {
 
   const deleteEntity = async (id) => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/entite/${id}`, {
+      const response = await fetch(`http://localhost:4000/entite/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -60,22 +60,22 @@ const getFilteredItemsByNom = (value) => {
 
 
   useEffect(() => {
-    fetch('https://bibliotheque-medical-back.vercel.app/file/allfiles')
+    fetch('http://localhost:4000/file/allfiles')
     .then(response => response.json())
     .then(data => setAllFiles(data))
     .catch(error => console.error(`Error fetching all files: ${error}`))
 
-    fetch('https://bibliotheque-medical-back.vercel.app/file/top10read')
+    fetch('http://localhost:4000/file/top10read')
       .then(response => response.json())
       .then(data => setTop10read(data))
       .catch(error => console.error(`Error fetching top 10 most read files: ${error}`))
 
-    fetch('https://bibliotheque-medical-back.vercel.app/file/filecount')
+    fetch('http://localhost:4000/file/filecount')
       .then(response => response.json())
       .then(data => setFileCount(data.fileCount))
       .catch(error => console.error(`Error fetching file count: ${error}`))
 
-    fetch('https://bibliotheque-medical-back.vercel.app/file/top10recent')
+    fetch('http://localhost:4000/file/top10recent')
       .then(response => response.json())
       .then(data => setTop10recent(data))
       .catch(error => console.error(`Error fetching top 10 most recent files: ${error}`))

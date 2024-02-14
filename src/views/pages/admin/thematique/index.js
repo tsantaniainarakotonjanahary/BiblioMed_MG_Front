@@ -14,7 +14,7 @@ const AddModal = (props) => {
   const toggle = () => setModal(!modal);
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://bibliotheque-medical-back.vercel.app/thematique', {
+      const response = await fetch('http://localhost:4000/thematique', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ function UpdateModal({ Thematique, onThematiqueUpdated }) {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/thematique/${Thematique._id}`, {
+      const response = await fetch(`http://localhost:4000/thematique/${Thematique._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ function UpdateModal({ Thematique, onThematiqueUpdated }) {
 const Thematiques = () => {
   const [Thematiques,setThematiques] = useState([]);
   const getThematiques = async () => {
-        fetch(`https://bibliotheque-medical-back.vercel.app/thematique`, {
+        fetch(`http://localhost:4000/thematique`, {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -137,7 +137,7 @@ const Thematiques = () => {
 
   const deleteThematique = async (id) => {
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/thematique/${id}`, {
+      const response = await fetch(`http://localhost:4000/thematique/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

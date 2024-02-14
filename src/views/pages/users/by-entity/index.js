@@ -51,8 +51,8 @@ const ByEntity = () => {
   useEffect(() => {
     setIsLoading(true);
       const getNotValidatedFile = async () => {
-      console.log(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`);
-          fetch(`https://bibliotheque-medical-back.vercel.app/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`, {
+      console.log(`http://localhost:4000/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`);
+          fetch(`http://localhost:4000/file/valides-par-mon-entite/${JSON.parse(localStorage.getItem("userData")).idEntite}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const ByEntity = () => {
   const markAsRead = async (fileId, fileLink, fileType) => {
     console.log(fileId);
     try {
-      const response = await fetch(`https://bibliotheque-medical-back.vercel.app/file/read/${fileId}`, {
+      const response = await fetch(`http://localhost:4000/file/read/${fileId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
